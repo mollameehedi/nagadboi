@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
    <header className="flex items-center justify-between h-[60px] px-6 bg-white shadow-sm sticky top-0 z-10">
-          <h1 className="text-2xl font-semibold text-gray-800">Dashboard</h1>
+          <h1 className="text-2xl font-semibold text-gray-800"></h1>
           <div className="flex items-center space-x-4">
             <button className="text-gray-500 hover:text-gray-700">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

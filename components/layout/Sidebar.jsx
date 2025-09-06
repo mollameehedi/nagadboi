@@ -50,7 +50,7 @@ const Sidebar = () => {
             </button>
             {activeDropdown === 'settings' && (
               <div className="ml-4 mt-1 space-y-1">
-                <a href="#" className="sidebar_item">
+                <a href="team" className="sidebar_item">
               <FaUsers className='sidebar_item_icon' />    Team
                 </a>
                 <a href="#" className="sidebar_item">
