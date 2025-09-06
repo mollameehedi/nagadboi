@@ -3,8 +3,12 @@
 import React, { useState } from 'react';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaUsers } from 'react-icons/fa6';
+import { IoLogoWhatsapp } from 'react-icons/io';
 import { MdKeyboard, MdOutlineContentCopy, MdOutlineModeEdit, MdOutlineTurnRight } from 'react-icons/md';
+import { RiWhatsappFill } from 'react-icons/ri';
 import { TbUsersPlus } from 'react-icons/tb';
+import { TiPlus } from 'react-icons/ti';
+import Icons from '../assets/Icon';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -116,16 +120,16 @@ const CashBook = () => {
                 <div className="flex items-center space-x-4">
                   <span className="text-sm text-green-600 font-bold">100</span>
                   <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Shafi SketchBook' ? 'block' : 'hidden'}`}>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineModeEdit />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineContentCopy />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <TbUsersPlus />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-red-700 text-2xl">
                       <MdOutlineTurnRight />
                     </button>
                   </div>
@@ -147,16 +151,16 @@ const CashBook = () => {
                 <div className="flex items-center space-x-4">
                   <span className="text-sm text-green-600 font-bold">100</span>
                   <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Office Expence' ? 'block' : 'hidden'}`}>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineModeEdit />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineContentCopy />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <TbUsersPlus />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-red-700 text-2xl">
                       <MdOutlineTurnRight />
                     </button>
                   </div>
@@ -178,16 +182,16 @@ const CashBook = () => {
                 <div className="flex items-center space-x-4">
                   <span className="text-sm text-green-600 font-bold">100</span>
                   <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Business Book' ? 'block' : 'hidden'}`}>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineModeEdit />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <MdOutlineContentCopy />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-primary text-2xl">
                       <TbUsersPlus />
                     </button>
-                    <button className="text-gray-400 hover:text-blue-600 text-2xl">
+                    <button className="text-red-700 text-2xl">
                       <MdOutlineTurnRight />
                     </button>
                   </div>
@@ -196,27 +200,27 @@ const CashBook = () => {
             </div>
 
             {/* Add New Book Section */}
-            <div className="bg-white p-4 rounded-lg shadow space-y-4">
+            <div className="bg-white p-4 rounded-sm border border-gray-200 space-y-4">
               <div className="flex items-center space-x-4">
                 <svg className="w-8 h-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h4 className="text-lg font-medium">Add New Book</h4>
+                  <h4 className="text-lg text-gray-900 font-medium">Add New Book</h4>
                   <p className="text-gray-500 text-sm">Click to quickly add books for</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                <button className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+                <button className="px-5 py-1 border border-primary/30 bg-primary/10 text-primary rounded-2xl hover:bg-gray-100 transition-colors">
                   September Expenses
                 </button>
-                <button className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+                <button className="px-5 py-1 border border-primary/30  bg-primary/10 text-primary rounded-2xl hover:bg-gray-100 transition-colors">
                   Project Book
                 </button>
-                <button className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+                <button className="px-5 py-1 border border-primary/30 bg-primary/10 text-primary rounded-2xl hover:bg-gray-100 transition-colors">
                   2025 Ledger
                 </button>
-                <button className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+                <button className="px-5 py-1 border border-primary/30 bg-primary/10 text-primary rounded-2xl hover:bg-gray-100 transition-colors">
                   Staff Salary
                 </button>
               </div>
@@ -227,28 +231,27 @@ const CashBook = () => {
 
           {/* Right Sidebar */}
           <div className="lg:w-80 space-y-4">
-            <div className="bg-white p-6 rounded-lg shadow space-y-4">
-              <div className="flex items-center space-x-2 text-green-600">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-8a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1zm-2 2a1 1 0 011-1h4a1 1 0 110 2h-4a1 1 0 01-1-1z" clipRule="evenodd" />
-                </svg>
-                <span className="font-semibold">Login via Email ID</span>
-              </div>
-              <p className="text-gray-500 text-sm">Verify email to login to mobile app & desktop</p>
-              <button className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+               <button className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors w-full">
+                  <TiPlus /> Add New Book
+                </button>
+
+            <div className=" p-4 rounded-xm border bg-green-200/20 border-gray-200 space-y-2">
+                <span className=' inline-block  rounded-full'>
+                <Icons.EmailPlush className="inline-block text-lg h-[37px]"/>
+                </span>
+                <h4 className=" text-sm font-semibold text-gray-600">Login via Email ID</h4>
+              <p className="text-gray-500 text-sm font-normal">Verify email to login to mobile app & desktop</p>
+              <button  className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors">
                 Add Email
               </button>
             </div>
-
-            <div className="bg-white p-6 rounded-lg shadow space-y-4">
-              <div className="flex items-center space-x-2 text-green-600">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008.854 6.6L7.172 7.747a1 1 0 00-.51 1.493l1.24 2.149a1 1 0 001.35 0L12 9.475a1 1 0 00-.51-1.493l-1.682-1.147z" clipRule="evenodd" />
-                </svg>
-                <span className="font-semibold">Need help in business setup?</span>
-              </div>
-              <p className="text-gray-500 text-sm">Our support team will help you</p>
-              <a href="#" className="flex items-center text-blue-600 font-semibold hover:text-blue-700">
+             <div className="bg-white p-6 rounded-xm border border-gray-200 space-y-2">
+                <span className='bg-green-600/10 h-[50px] w-[50px] inline-block text-center leading-[50px] rounded-full'>
+                <RiWhatsappFill   className="text-green-600 inline-block  text-xl"/>
+                </span>
+                <h4 className=" text-sm font-semibold text-gray-600">Need help in business setup?</h4>
+              <p className="text-gray-500 text-sm font-normal">Our support team will help you</p>
+              <a href="#" className="flex-1 flex items-center justify-start sm:flex-none px-0 py-2 text-primary ">
                 Contact Us
                 <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
