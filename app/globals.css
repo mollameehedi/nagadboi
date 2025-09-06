@@ -29,7 +29,7 @@ body {
 }
 
 .auth_button{
-  @apply  w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-sm text-base font-medium text-primary bg-white text-primary hover:bg-gray-50 transition-colors;
+  @apply  w-full flex items-center justify-center  px-4 py-3 border border-gray-300 rounded-sm text-base font-medium text-primary bg-white text-primary hover:bg-gray-50 transition-colors;
 }
 
 
@@ -40,4 +40,13 @@ body {
 
 .border_bottom_logo{
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.sidebar_item{
+  @apply flex items-center w-full px-4 py-3 font-normal rounded-lg text-gray-900 hover:bg-gray-200 transition-colors focus:outline-none;
+}
+.sidebar_item_icon{
+  @apply font-normal rounded-lg text-gray-900 mr-2 text-base;
+}
+.booking_itme {
+  @apply border-b-1 border-gray-200 flex items-center justify-between;
 }

@@ -26,15 +26,11 @@ export default function RootLayout({ children }) {
       >
         <div className="bg-gray-100 min-h-screen font-sans antialiased flex">
       {/* Left Sidebar */}
-    
     <Sidebar/>
       {/* Main Content Area */}
       <main className="flex-1 overflow-y-auto">
         {/* Header */}
         <Header/>
-
-        {/* Dashboard Content */}
-       
         {children}
       </main>
     </div>
