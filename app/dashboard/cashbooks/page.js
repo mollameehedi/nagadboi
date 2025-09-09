@@ -1,6 +1,8 @@
 'use client';
 
+import Icons from '@/app/assets/Icon';
 import React, { useState } from 'react';
+import { IconBase } from 'react-icons';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaUsers } from 'react-icons/fa6';
 import { IoLogoWhatsapp } from 'react-icons/io';
@@ -8,7 +10,6 @@ import { MdKeyboard, MdOutlineContentCopy, MdOutlineModeEdit, MdOutlineTurnRight
 import { RiWhatsappFill } from 'react-icons/ri';
 import { TbUsersPlus } from 'react-icons/tb';
 import { TiPlus } from 'react-icons/ti';
-import Icons from '../assets/Icon';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -202,9 +203,7 @@ const CashBook = () => {
             {/* Add New Book Section */}
             <div className="bg-white p-4 rounded-sm border border-gray-200 space-y-4">
               <div className="flex items-center space-x-4">
-                <svg className="w-8 h-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Icons.AddBook className=" inline-block text-lg h-[40px] w-[40px] rounded-full p-2 bg-primary/10"/>
                 <div>
                   <h4 className="text-lg text-gray-900 font-medium">Add New Book</h4>
                   <p className="text-gray-500 text-sm">Click to quickly add books for</p>
@@ -237,7 +236,7 @@ const CashBook = () => {
 
             <div className=" p-4 rounded-xm border bg-green-200/20 border-gray-200 space-y-2">
                 <span className=' inline-block  rounded-full'>
-                <Icons.EmailPlush className="inline-block text-lg h-[37px]"/>
+                <Icons.EmailPlush className="inline-block text-lg h-[40px]"/>
                 </span>
                 <h4 className=" text-sm font-semibold text-gray-600">Login via Email ID</h4>
               <p className="text-gray-500 text-sm font-normal">Verify email to login to mobile app & desktop</p>

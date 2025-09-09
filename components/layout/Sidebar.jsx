@@ -6,6 +6,7 @@ import { CiViewList } from "react-icons/ci";
 import { FaUsers } from "react-icons/fa6";
 import { MdOutlineSettings } from 'react-icons/md';
 import { TbWallet } from 'react-icons/tb';
+import Link from 'next/link';
 
 const Sidebar = () => {
    const [activeDropdown, setActiveDropdown] = useState(null);
@@ -18,7 +19,7 @@ const Sidebar = () => {
         <div className="text-xl font-bold text-indigo-600 border_bottom_logo leading-[60px]  w-64 text-center">
           <Image src={logo} alt="alt" width={70} height={60} className='h-[60px] w-auto m-auto' />
         </div>
-        <nav className="flex-1 space-y-2 w-64 p-6">
+        <nav className="flex-1 space-y-2 w-64 py-4 px-0">
           
           {/* <a href="#" className="flex items-center px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,9 +38,9 @@ const Sidebar = () => {
             </button>
             {activeDropdown === 'book_keeping' && (
               <div className="ml-4 mt-1 space-y-1">
-                <a href="cashbooks" className="sidebar_item">
+                <Link href="/dashboard/cashbooks" className="sidebar_item">
               <TbWallet  className='sidebar_item_icon' />    Cahsbook
-                </a>
+                </Link>
               </div>
             )}
             <button onClick={() => handleDropdownToggle('settings')} className="flex items-center w-full px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors focus:outline-none">
@@ -50,13 +51,13 @@ const Sidebar = () => {
             </button>
             {activeDropdown === 'settings' && (
               <div className="ml-4 mt-1 space-y-1">
-                <a href="team" className="sidebar_item">
+                <Link href="/dashboard/team" className="sidebar_item">
               <FaUsers className='sidebar_item_icon' />    Team
-                </a>
-                <a href="#" className="sidebar_item">
+                </Link>
+                <Link href="/dashboard/business-settings/setting" className="sidebar_item">
               <MdOutlineSettings className='sidebar_item_icon' />    Business Setting
-                </a>
-                <a href="#" className="sidebar_item">
+                </Link>
+                <a href="/dashboard/subscription" className="sidebar_item">
               <CiViewList className='sidebar_item_icon' />    Subscription
                 </a>
               </div>

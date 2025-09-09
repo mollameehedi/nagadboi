@@ -1,19 +1,50 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import { AiOutlineUser } from 'react-icons/ai'
+import { BiChevronDown } from 'react-icons/bi'
+import { BsBoxArrowLeft } from 'react-icons/bs'
 
 const Header = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
    <header className="flex items-center justify-between h-[60px] px-6 bg-white shadow-sm sticky top-0 z-10">
           <h1 className="text-2xl font-semibold text-gray-800"></h1>
-          <div className="flex items-center space-x-4">
-            <button className="text-gray-500 hover:text-gray-700">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a2 2 0 11-4 0m4 0a2 2 0 00-4 0m4 0h2m-2 0h-2m-2-6a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </button>
-            <div className="relative">
-              <img className="h-10 w-10 rounded-full object-cover cursor-pointer" src="https://placehold.co/40x40/FF5733/FFFFFF?text=P" alt="User Avatar" />
-            </div>
-          </div>
+           <div className="relative">
+                      <button
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                        className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 focus:outline-none"
+                      >
+                        <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold">
+                          M
+                        </div>
+                        <span className="text-sm font-semibold text-gray-800 hidden md:inline">MD. Hazzaz Bin Faiz</span>
+                        <BiChevronDown className="w-4 h-4 text-gray-500" />
+                      </button>
+                      {dropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                          <div className="py-1">
+                            <div className="flex items-center space-x-2 p-4">
+                              <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-lg">
+                                M
+                              </div>
+                              <div>
+                                <div className="text-sm font-semibold text-gray-800">MD. Hazzaz Bin Faiz</div>
+                                <div className="text-xs text-gray-500">+8801774378409</div>
+                              </div>
+                            </div>
+                            <div className="border-t border-gray-200"></div>
+                            <div className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
+                              <span className="text-sm">Your Profile</span>
+                              <AiOutlineUser className="w-4 h-4 text-gray-500" />
+                            </div>
+                            <div className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
+                              <span className="text-sm">Logout</span>
+                              <BsBoxArrowLeft className="w-4 h-4 text-gray-500" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
         </header>
   )
 }
