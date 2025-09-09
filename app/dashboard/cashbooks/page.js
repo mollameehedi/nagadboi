@@ -1,6 +1,7 @@
 'use client';
 
 import Icons from '@/app/assets/Icon';
+import CashBookItem from '@/components/Screen/Cashbook/CashBookItem';
 import React, { useState } from 'react';
 import { IconBase } from 'react-icons';
 import { FaUserFriends } from 'react-icons/fa';
@@ -37,6 +38,26 @@ const CashBook = () => {
     setHoveredBook(null);
   };
 
+    const cashbooks = [
+    {
+      name: 'Shafi SketchBook',
+      members: 2,
+      updatedDays: 20,
+      balance: 100,
+    },
+    {
+      name: 'Office Expence',
+      members: 5,
+      updatedDays: 5,
+      balance: 5000,
+    },
+    {
+      name: 'Business Book',
+      members: 3,
+      updatedDays: 1,
+      balance: -250,
+    },
+  ];
   
 
   return (
@@ -105,99 +126,9 @@ const CashBook = () => {
             {/* Book Entries */}
             <div className="space-y-4">
               {/* Shafi SketchBook */}
-              <div className="bg-white p-4 border-b-1 border-gray-200 flex items-center justify-between"
-                   onMouseEnter={() => handleMouseEnter('Shafi SketchBook')}
-                   onMouseLeave={handleMouseLeave}>
-                <div className="flex items-center space-x-4">
-                <span className='bg-primary/10 rounded-full text-lg w-[40px] h-[40px] text-center leading-[40px]'>
-
-                      <FaUserFriends  className='text-base text-primary inline-block'/>
-                </span>
-                  <div>
-                    <h4 className="text-lg text-gray-900 font-medium">Shafi SketchBook</h4>
-                    <p className="text-gray-500 text-sm">2 members • Updated 20 days ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-green-600 font-bold">100</span>
-                  <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Shafi SketchBook' ? 'block' : 'hidden'}`}>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineModeEdit />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineContentCopy />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <TbUsersPlus />
-                    </button>
-                    <button className="text-red-700 text-2xl">
-                      <MdOutlineTurnRight />
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white p-4 border-b-1 border-gray-200 flex items-center justify-between"
-                   onMouseEnter={() => handleMouseEnter('Office Expence')}
-                   onMouseLeave={handleMouseLeave}>
-                <div className="flex items-center space-x-4">
-                <span className='bg-primary/10 rounded-full text-lg w-[40px] h-[40px] text-center leading-[40px]'>
-
-                      <FaUserFriends  className='text-base text-primary inline-block'/>
-                </span>
-                  <div>
-                    <h4 className="text-lg text-gray-900 font-medium">Office Expence</h4>
-                    <p className="text-gray-500 text-sm">2 members • Updated 20 days ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-green-600 font-bold">100</span>
-                  <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Office Expence' ? 'block' : 'hidden'}`}>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineModeEdit />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineContentCopy />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <TbUsersPlus />
-                    </button>
-                    <button className="text-red-700 text-2xl">
-                      <MdOutlineTurnRight />
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white p-4 border-b-1 border-gray-200 flex items-center justify-between"
-                   onMouseEnter={() => handleMouseEnter('Business Book')}
-                   onMouseLeave={handleMouseLeave}>
-                <div className="flex items-center space-x-4">
-                <span className='bg-primary/10 rounded-full text-lg w-[40px] h-[40px] text-center leading-[40px]'>
-
-                      <FaUserFriends  className='text-base text-primary inline-block'/>
-                </span>
-                  <div>
-                    <h4 className="text-lg text-gray-900 font-medium">Business Book</h4>
-                    <p className="text-gray-500 text-sm">2 members • Updated 20 days ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-green-600 font-bold">100</span>
-                  <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === 'Business Book' ? 'block' : 'hidden'}`}>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineModeEdit />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <MdOutlineContentCopy />
-                    </button>
-                    <button className="text-primary text-2xl">
-                      <TbUsersPlus />
-                    </button>
-                    <button className="text-red-700 text-2xl">
-                      <MdOutlineTurnRight />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {cashbooks.map((book ,index) => (
+                <CashBookItem name={book.name} balance={book.balance} updatedDays={book.updatedDays} memeber={book.members} key={index} />
+  ))}
             </div>
 
             {/* Add New Book Section */}
