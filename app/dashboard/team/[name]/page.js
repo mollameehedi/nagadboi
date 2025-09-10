@@ -5,6 +5,7 @@ import PermissionItem from '@/components/Screen/Team/PermissionItem';
 import React, { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa';
 import Icon from '../../../assets/Icon';
+import { IoIosInformationCircle } from 'react-icons/io';
 
 const MemberDetails = () => {
      const [showPermissions, setShowPermissions] = useState(false);
@@ -80,7 +81,12 @@ const MemberDetails = () => {
             <Icon.ChevronDownIcon isOpen={showPermissions}  className='text-lg ml-2'/>
           </button>
            {showPermissions && (
+            
             <div className="p-4 border-t border-gray-200 mt-3">
+               <div className="flex items-start bg-blue-50 text-blue-800 p-4 rounded-lg mb-4">
+                <IoIosInformationCircle className="flex-shrink-0 mt-1 mr-3" />
+                <span className="text-sm">Each business can have only one owner</span>
+              </div>
               <h4 className="font-semibold text-gray-500 mb-2">Permissions</h4>
               <div className="space-y-2 mb-4">
                 {permissions.map((p, index) => (
