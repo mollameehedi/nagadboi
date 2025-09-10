@@ -1,5 +1,6 @@
 "use client"
 import Card from '@/components/Common/Card'
+import TeamItem from '@/components/Screen/Team/TeamItem'
 import React, { useState } from 'react'
 import { BsPersonCheck, BsWhatsapp } from 'react-icons/bs'
 import { MdKeyboardArrowRight, MdOutlineBusinessCenter } from 'react-icons/md'
@@ -87,22 +88,8 @@ const team = () => {
                         {/* Member List */}
                         <div className="space-y-4 bg-white border border-gray-200 p-4">
                             <h3 className="text-sm font-medium text-gray-500">Owner/Partner ({teamMembers.length})</h3>
-                            {teamMembers.map((member) => (
-                                <div key={member.name} className=" p-2 border-b-1 border-gray-200 flex items-center justify-between group">
-                                    <div className="flex items-center space-x-4">
-                                        <span className={`h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-full ${member.color} font-bold`}>{member.initials}</span>
-                                        <div>
-                                            <h4 className="text-lg font-medium text-gray-900">{member.name}</h4>
-                                            <p className="text-gray-500 text-sm">{member.contact}</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center space-x-4">
-                                        <span className={`text-sm font-bold py-1 px-3 rounded-full ${member.role === 'Partner' ? 'text-orange-600 bg-orange-100' : 'text-green-600 bg-green-100'}`}>{member.role}</span>
-                                        <a href="#" className="text-gray-400 hover:text-blue-600 w-6 h-6">
-                                            <MdKeyboardArrowRight />
-                                        </a>
-                                    </div>
-                                </div>
+                            {teamMembers.map((member,index) => (
+                                <TeamItem name={member.name} color={member.color} initials={member.initials} role={member.role} contact={member.contact} key={index}/>
                             ))}
                         </div>
 
