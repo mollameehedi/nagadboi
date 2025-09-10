@@ -1,11 +1,11 @@
 
-import Header from '@/components/Screen/Help/Header'
+import SingleHeader from '@/components/layout/SingleHeader'
 import React from 'react'
 
 const layout = ({children}) => {
   return (
        <>
-       <Header/>
+       <SingleHeader/>
         {children}
        </>
   )

@@ -4,7 +4,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 
 const TeamItem = ({ name,color,initials,contact,role,index }) => {
   return (
-    <Link href={`dashboard/team/${name}`} className=" p-2 border-b-1 border-gray-200 flex items-center justify-between group">
+    <Link href={`/dashboard/team/${name}`} className=" p-2 border-b-1 border-gray-200 flex items-center justify-between group">
                                     <div className="flex items-center space-x-4">
                                         <span className={`h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-full ${color} font-bold`}>{initials}</span>
                                         <div>

@@ -1,13 +1,13 @@
 "use client"
 import Image from 'next/image'
 import React, { useState } from 'react'
-import logo from '../../../public/logo.png';
+import logo from '../../public/logo.png';
 import { BiChevronDown } from 'react-icons/bi'
 import { BsBoxArrowLeft } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import RounIcon from '@/components/Common/RounIcon';
 
-const Header = () => {
+const SingleHeader = () => {
       const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
       <header className="flex items-center justify-between px-6 bg-white border-b border-gray-200 shadow-sm">
@@ -54,4 +54,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default SingleHeader

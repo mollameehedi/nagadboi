@@ -23,8 +23,8 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background:  var(--foreground);
+  color: var(--background);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -42,10 +42,13 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .sidebar_item{
-  @apply flex items-center w-full px-4 py-3 font-normal rounded-lg text-gray-900 hover:bg-gray-200 transition-colors focus:outline-none;
+  @apply flex items-center w-full px-3 py-2 font-normal rounded-sm text-gray-900 hover:bg-gray-200 transition-colors focus:outline-none;
+}
+.active-link{
+  @apply bg-primary text-white;
 }
 .sidebar_item_icon{
-  @apply font-normal rounded-lg text-gray-900 mr-2 text-base;
+  @apply font-normal rounded-lg  mr-2 text-base;
 }
 .booking_itme {
   @apply border-b-1 border-gray-200 flex items-center justify-between;
