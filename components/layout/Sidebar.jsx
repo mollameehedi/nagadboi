@@ -32,7 +32,7 @@ const Sidebar = () => {
           <Image src={logo} alt="alt" width={70} height={60} className='h-[60px] w-auto m-auto cursor-pointer' />
           </Link>
         </div>
-        <nav className="flex-1 space-y-2 w-64 py-4 px-0">
+        <nav className="w-64 py-4 px-0">
 
            <SidebarItem text="Book Keeping" name="book_keeping" activeDropdownName={activeDropdown} onDropdownToggle={handleDropdownToggle} getNavLinkClass={getNavLinkClass} >
           <Link href="/dashboard/cashbooks" className={`sidebar_item ${getNavLinkClass('/dashboard/cashbooks')}`}>

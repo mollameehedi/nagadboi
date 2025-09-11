@@ -7,7 +7,7 @@ const SidebarItem = ({ icon: Icon, text, href, name, activeDropdownName, onDropd
   const isDropdownOpen = activeDropdownName === name;
   const isActive = isDropdown ? false : getNavLinkClass(href) === 'active-link';
 
-  const baseClasses = "flex items-center w-full px-4 py-3 rounded-lg text-gray-600 transition-colors focus:outline-none";
+  const baseClasses = "flex items-center w-full px-4 py-2 rounded-lg text-gray-600 transition-colors focus:outline-none";
   const activeClasses = isActive ? 'active-link' : '';
 
   if (isDropdown) {
