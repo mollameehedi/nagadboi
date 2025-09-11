@@ -2,6 +2,8 @@
 
 import Icons from '@/app/assets/Icon';
 import CashBookItem from '@/components/Screen/Cashbook/CashBookItem';
+import EmailAddPopup from '@/components/Screen/Common/EmailAddPopup';
+import RenameBookModal from '@/components/Screen/Common/RenameBookModal';
 import React, { useState } from 'react';
 import { IconBase } from 'react-icons';
 import { FaUserFriends } from 'react-icons/fa';
@@ -17,6 +19,9 @@ const CashBook = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('Last Updated');
   const [hoveredBook, setHoveredBook] = useState(null);
+
+    const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+
 
   const handleDropdownToggle = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -40,18 +45,21 @@ const CashBook = () => {
 
     const cashbooks = [
     {
+      id: 1,
       name: 'Shafi SketchBook',
       members: 2,
       updatedDays: 20,
       balance: 100,
     },
     {
+      id: 2,
       name: 'Office Expence',
       members: 5,
       updatedDays: 5,
       balance: 5000,
     },
     {
+      id: 3,
       name: 'Business Book',
       members: 3,
       updatedDays: 1,
@@ -59,6 +67,42 @@ const CashBook = () => {
     },
   ];
   
+
+
+  const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
+
+    const handleRenameBook = (id) => {
+        const bookToRename = cashbooks.find(book => book.id === id);
+        setSelectedBook(bookToRename);
+        setIsRenameModalOpen(true);
+    };
+
+    const handleSaveBookName = (newName) => {
+        setCashbooks(
+            cashbooks.map(book =>
+                book.id === selectedBook.id ? { ...book, name: newName } : book
+            )
+        );
+        setIsRenameModalOpen(false);
+    };
+
+    const handleCopyBook = (bookId) => {
+        alert(`Copying book with ID: ${bookId}`);
+    };
+
+    const handleAddUsers = (bookId) => {
+        alert(`Adding users to book with ID: ${bookId}`);
+    };
+
+    const handleLeaveBook = (bookId) => {
+        alert(`Leaving book with ID: ${bookId}`);
+    };
+
+
+
+
+
 
   return (
     <div className="bg-white min-h-screen font-sans antialiased flex flex-col">
@@ -126,9 +170,32 @@ const CashBook = () => {
             {/* Book Entries */}
             <div className="space-y-4">
               {/* Shafi SketchBook */}
-              {cashbooks.map((book ,index) => (
-                <CashBookItem name={book.name} balance={book.balance} updatedDays={book.updatedDays} memeber={book.members} key={index} />
-  ))}
+         {cashbooks.length > 0 ? (
+                    cashbooks.map((book,index) => (
+                        <CashBookItem
+                            key={index}
+                            name={book.name}
+                            balance={book.balance}
+                            updatedDays={book.updatedDays}
+                            memeber={book.members}
+                            onRenameBook={() => handleRenameBook(book.id)}
+                            onCopyBook={() => handleCopyBook(book.id)}
+                            onAddUsers={() => handleAddUsers(book.id)}
+                            onLeaveBook={() => handleLeaveBook(book.id)}
+                        />
+                    ))
+                ) : (
+                    <div className="p-4 text-center text-gray-500">No cashbooks found.</div>
+                )}
+
+   {selectedBook && (
+                <RenameBookModal
+                    isOpen={isRenameModalOpen}
+                    onClose={() => {setIsRenameModalOpen(false); selectedBook.name}}
+                    currentName={selectedBook.name}
+                    onSave={handleSaveBookName}
+                />
+            )}
             </div>
 
             {/* Add New Book Section */}
@@ -171,10 +238,14 @@ const CashBook = () => {
                 </span>
                 <h4 className=" text-sm font-semibold text-gray-600">Login via Email ID</h4>
               <p className="text-gray-500 text-sm font-normal">Verify email to login to mobile app & desktop</p>
-              <button  className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors">
+              <button onClick={() => setIsEmailModalOpen(true)}  className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors">
                 Add Email
               </button>
             </div>
+               {/* Add Email Modal */}
+          <EmailAddPopup isOpen={isEmailModalOpen} onClose={() => setIsEmailModalOpen(false)} />
+
+
              <div className="bg-white p-6 rounded-xm border border-gray-200 space-y-2">
                 <span className='bg-green-600/10 h-[50px] w-[50px] inline-block text-center leading-[50px] rounded-full'>
                 <RiWhatsappFill   className="text-green-600 inline-block  text-xl"/>

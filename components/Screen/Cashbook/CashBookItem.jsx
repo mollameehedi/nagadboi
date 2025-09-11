@@ -5,8 +5,13 @@ import { FaUserFriends } from 'react-icons/fa'
 import { MdOutlineContentCopy, MdOutlineModeEdit, MdOutlineTurnRight } from 'react-icons/md'
 import { TbUsersPlus } from 'react-icons/tb'
 
-const CashBookItem = ({ name,balance,updatedDays,memeber }) => {
+const CashBookItem = ({ name,balance,updatedDays,memeber , onRenameBook, onCopyBook, onAddUsers, onLeaveBook }) => {
     const [hoveredBook, setHoveredBook] = useState(null);
+    const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
+
+
+
+
       const handleMouseEnter = (bookName) => {
     setHoveredBook(bookName);
   };
@@ -15,7 +20,8 @@ const CashBookItem = ({ name,balance,updatedDays,memeber }) => {
     setHoveredBook(null);
   };
   return (
-    <Link href="/dashboard/cashbooks/mehedi" className="bg-white p-4 border-b-1 border-gray-200 flex items-center justify-between"
+    <>
+     <Link href="/dashboard/cashbooks/mehedi" className="bg-white p-4 border-b-1 border-gray-200 flex items-center justify-between"
                        onMouseEnter={() => handleMouseEnter(name)}
                        onMouseLeave={handleMouseLeave}>
                     <div className="flex items-center space-x-4">
@@ -31,21 +37,29 @@ const CashBookItem = ({ name,balance,updatedDays,memeber }) => {
                     <div className="flex items-center space-x-4">
                       <span className="text-sm text-green-600 font-bold">{balance}</span>
                       <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === name ? 'block' : 'hidden'}`}>
-                        <button className="text-primary text-2xl">
+                        <button className="text-primary text-2xl" onClick={(e) => {
+              e.preventDefault();
+              onRenameBook();
+            }}>
                           <MdOutlineModeEdit />
                         </button>
-                        <button className="text-primary text-2xl">
+                        <button className="text-primary text-2xl" onClick={(e) => {onLeaveBook()}}>
                           <MdOutlineContentCopy />
                         </button>
-                        <button className="text-primary text-2xl">
+                        <button className="text-primary text-2xl" onClick={(e) => {onAddUsers()}}>
                           <TbUsersPlus />
                         </button>
                         <button className="text-red-700 text-2xl">
-                          <MdOutlineTurnRight />
+                          <MdOutlineTurnRight  onClick={(e) => {onLeaveBook()}}/>
                         </button>
                       </div>
                     </div>
                   </Link>
+    
+    </>
+   
+
+                  
   )
 }
 

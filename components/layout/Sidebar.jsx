@@ -26,17 +26,11 @@ const Sidebar = () => {
   return (
      <aside className=" bg-white  shadow-md hidden md:flex flex-col border-r-1 border-gray-200">
         <div className="text-xl font-bold text-indigo-600 border_bottom_logo leading-[60px]  w-64 text-center">
-          <Image src={logo} alt="alt" width={70} height={60} className='h-[60px] w-auto m-auto' />
+        <Link href="/dashboard/cashbooks">
+          <Image src={logo} alt="alt" width={70} height={60} className='h-[60px] w-auto m-auto cursor-pointer' />
+          </Link>
         </div>
         <nav className="flex-1 space-y-2 w-64 py-4 px-0">
-          
-          {/* <a href="#" className="flex items-center px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors">
-            <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13.5m0-13.5a4.5 4.5 0 110 9m0-9a4.5 4.5 0 00-4.5 4.5v3.52c0 .61.35 1.15.89 1.42a4.512 4.512 0 001.29.62c.28.09.58.14.88.14" />
-            </svg>
-            Book Keeping
-          </a> */}
-
           {/* book_keeping Dropdown */}
           <div>
             <button onClick={() => handleDropdownToggle('book_keeping')}  className={`sidebar_item`}>

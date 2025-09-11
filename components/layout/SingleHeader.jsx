@@ -6,13 +6,17 @@ import { BiChevronDown } from 'react-icons/bi'
 import { BsBoxArrowLeft } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import RounIcon from '@/components/Common/RounIcon';
+import Link from 'next/link';
 
 const SingleHeader = () => {
       const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
       <header className="flex items-center justify-between px-6 bg-white border-b border-gray-200 shadow-sm">
         <div className="flex items-center">
-          <Image src={logo} alt="alt" width={70} height={50} className='h-[50px] w-auto m-auto' />
+          <Link href="/dashboard/cashbooks">
+          
+          <Image src={logo} alt="alt" width={70} height={50} className='h-[50px] w-auto m-auto cursor-pointer' />
+          </Link>
         </div>
         <div className="relative">
           <button
