@@ -37,19 +37,19 @@ const CashBookItem = ({ name,balance,updatedDays,memeber , onRenameBook, onCopyB
                     <div className="flex items-center space-x-4">
                       <span className="text-sm text-green-600 font-bold">{balance}</span>
                       <div className={`flex items-center space-x-2 transition-opacity duration-300 ${hoveredBook === name ? 'block' : 'hidden'}`}>
-                        <button className="text-primary text-2xl" onClick={(e) => {
+                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {
               e.preventDefault();
               onRenameBook();
             }}>
                           <MdOutlineModeEdit />
                         </button>
-                        <button className="text-primary text-2xl" onClick={(e) => {onLeaveBook()}}>
+                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {onLeaveBook()}}>
                           <MdOutlineContentCopy />
                         </button>
-                        <button className="text-primary text-2xl" onClick={(e) => {onAddUsers()}}>
+                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {onAddUsers()}}>
                           <TbUsersPlus />
                         </button>
-                        <button className="text-red-700 text-2xl">
+                        <button className="text-red-700 text-2xl cursor-pointer">
                           <MdOutlineTurnRight  onClick={(e) => {onLeaveBook()}}/>
                         </button>
                       </div>
