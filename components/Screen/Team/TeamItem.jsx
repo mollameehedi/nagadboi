@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import React from 'react'
 import { MdKeyboardArrowRight } from 'react-icons/md'
@@ -14,9 +15,9 @@ const TeamItem = ({ name,color,initials,contact,role,index }) => {
                                     </div>
                                     <div className="flex items-center space-x-4">
                                         <span className={`text-sm font-bold py-1 px-3 rounded-full ${role === 'Partner' ? 'text-orange-600 bg-orange-100' : 'text-green-600 bg-green-100'}`}>{role}</span>
-                                        <a href="#" className="text-gray-400 hover:text-blue-600 w-6 h-6">
+                                        <span className="text-gray-400 hover:text-blue-600 w-6 h-6">
                                             <MdKeyboardArrowRight />
-                                        </a>
+                                        </span>
                                     </div>
                                 </Link>
   )

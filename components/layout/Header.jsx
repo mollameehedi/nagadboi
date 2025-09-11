@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BiChevronDown } from 'react-icons/bi'
@@ -33,10 +34,10 @@ const Header = () => {
                               </div>
                             </div>
                             <div className="border-t border-gray-200"></div>
-                            <div className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
+                            <Link href='/profile' className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
                               <span className="text-sm">Your Profile</span>
                               <AiOutlineUser className="w-4 h-4 text-gray-500" />
-                            </div>
+                            </Link>
                             <div className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
                               <span className="text-sm">Logout</span>
                               <BsBoxArrowLeft className="w-4 h-4 text-gray-500" />

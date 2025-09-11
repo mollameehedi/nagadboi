@@ -4,13 +4,16 @@ import SingleHeader from '@/components/layout/SingleHeader';
 import React, { useState } from 'react'
 import { FaRegEdit } from 'react-icons/fa';
 import { MdLogout } from 'react-icons/md';
-import { RiAppleLine } from 'react-icons/ri';
 import dashboardImage from '@/public/dashboard.png'
 import Image from 'next/image';
 import Card from '@/components/Common/Card';
+import { IoMdClose } from 'react-icons/io';
+import { FcGoogle } from 'react-icons/fc';
 
 const Profile = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   return (
     <>
@@ -35,14 +38,14 @@ const Profile = () => {
           </div>
           <p className="text-sm text-green-700">Login via verified email on mobile app & desktop</p>
           <p className="text-sm text-green-700">Get monthly summary on email (Coming Soon)</p>
-          <button className="mt-4 px-4 py-2 text-sm font-semibold text-green-800 bg-green-200 rounded-lg hover:bg-green-300">
+          <button className="mt-4 px-4 py-2 text-sm font-semibold text-green-800 bg-green-200 rounded-lg hover:bg-green-300"  onClick={() => setIsEmailModalOpen(true)}>
             + Add Email
           </button>
         </div>
 
         <div className="flex space-x-4 mb-6 border-b-1 border-gray-200 pb-5">
-          <button className="flex items-center px-5 py-2 border-1 border-gray-200 text-primary rounded-sm text-sm hover:bg-gray-200">
-            <FaRegEdit className='mr-2' />
+          <button className="flex items-center px-5 py-2 border-1 border-gray-200 text-primary rounded-sm text-sm hover:bg-gray-200 cursor-pointer" onClick={() => setIsEditModalOpen(true)}>
+            <FaRegEdit className='mr-2'/>
             Edit Profile
           </button>
           <button className="flex items-center px-5 py-2  text-red-700 rounded-sm text-sm hover:bg-gray-200">
@@ -57,8 +60,7 @@ const Profile = () => {
             <div className="font-medium text-base">Notifications</div>
             <div className="text-sm text-gray-500">Get notified for entries from group books</div>
           </div>
-          <div
-            onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+          <div onClick={() => setNotificationsEnabled(!notificationsEnabled)}
             className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors ${notificationsEnabled ? 'bg-blue-600' : 'bg-gray-300'}`}
           >
             <div
@@ -74,6 +76,72 @@ const Profile = () => {
           <Image src={dashboardImage} height={100} width={600} alt="Mobile App Preview" className="w-full h-auto rounded-sm border-3 border-primary" />
        
       </div>
+        {/* Edit Profile Modal */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-gray-600/40 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+          <div className="relative p-8 bg-white w-full max-w-lg mx-auto rounded-xl shadow-lg">
+            <div className="flex justify-between items-center pb-3">
+              <h3 className="text-xl font-medium text-gray-900">Update Profile Details</h3>
+              <button onClick={() => setIsEditModalOpen(false)}  className='border border-gray-200 rounded-sm p-2 cursor-pointer'>
+                <IoMdClose />
+              </button>
+            </div>
+            <div className="mt-2 space-y-4">
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Your Name <span className="text-red-500">*</span></label>
+                <input type="text" className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" defaultValue="MD. Hazzaz Bin Faiz" />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Email</label>
+                <input type="email" className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. username@example.com" />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Mobile Number</label>
+                <input type="tel" className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" defaultValue="+8801774378409" />
+              </div>
+            </div>
+            <div className="flex justify-end space-x-3 mt-6">
+              <button onClick={() => setIsEditModalOpen(false)} className="px-6 py-2 text-gray-600 rounded-lg hover:bg-gray-200">Cancel</button>
+              <button onClick={() => setIsEditModalOpen(false)} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      
+      {/* Add Email Modal */}
+      {isEmailModalOpen && (
+        <div className="fixed inset-0 bg-gray-600/40 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+          <div className="relative p-8 bg-white w-full max-w-lg mx-auto rounded-xl shadow-lg">
+            <div className="flex justify-between items-center pb-3">
+              <h3 className="text-2xl font-semibold text-gray-900">Add Email Address</h3>
+              <button onClick={() => setIsEmailModalOpen(false)} className='border border-gray-200 rounded-sm p-2 cursor-pointer'>
+                <IoMdClose />
+              </button>
+            </div>
+            <div className="mt-2 space-y-4">
+              <button className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors">
+                <FcGoogle />
+                Continue With Google
+              </button>
+              <div className="relative flex justify-center items-center">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-gray-300"></span>
+                </div>
+                <div className="relative bg-white px-2 text-sm text-gray-500">Or</div>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Email</label>
+                <input type="email" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. username@example.com" />
+              </div>
+            </div>
+            <div className="flex justify-end space-x-3 mt-6">
+              <button onClick={() => setIsEmailModalOpen(false)} className="px-6 py-2 text-gray-600 rounded-lg hover:bg-gray-200">Cancel</button>
+              <button onClick={() => setIsEmailModalOpen(false)} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Send Verification OTP</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
     </>
   );
