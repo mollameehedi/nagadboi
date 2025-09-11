@@ -29,7 +29,7 @@ body {
 }
 
 .auth_button{
-  @apply  w-full flex items-center justify-center  px-4 py-3 border border-gray-300 rounded-sm text-base font-medium text-primary bg-white text-primary hover:bg-gray-50 transition-colors;
+  @apply  w-full flex items-center justify-center  px-4 py-3 border border-gray-300 rounded-sm text-base font-medium text-primary bg-white text-primary hover:bg-gray-50 text-primary transition-colors;
 }
 
 
@@ -42,7 +42,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .sidebar_item{
-  @apply flex items-center w-full px-3 py-2 font-normal rounded-sm text-gray-900 hover:bg-gray-200 transition-colors focus:outline-none;
+  @apply flex items-center w-full px-3 py-2 my-2 font-normal rounded-sm text-gray-900 hover:bg-gray-200 transition-colors focus:outline-none;
 }
 .active-link{
   @apply bg-primary text-white;
