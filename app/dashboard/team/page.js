@@ -107,9 +107,7 @@ const Team = () => {
                     </Card>
                 </div>
                 </div>
-
                 {/* Right Sidebar */}
-              
             </div>
         </div>
 

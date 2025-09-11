@@ -1,12 +1,15 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import { redirect } from 'next/navigation'
 
 const Home = () => {
-  return (
-     <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Stats Cards */}
-          HOme page
-        </div>
-  )
+   const [isAuthenticated,setIsAuthenticated] =useState(false)
+
+  if (!isAuthenticated) {
+    return redirect('/login')
+  }
+
+  return redirect('/dashboard/cashbooks')
 }
 
 export default Home

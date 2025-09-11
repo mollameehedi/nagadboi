@@ -107,7 +107,7 @@ const CashBook = () => {
   return (
     <div className="bg-white min-h-screen font-sans antialiased flex flex-col">
       {/* Top Header */}
-      <div className="flex items-center justify-between h-16 px-6  sticky top-0 z-20">
+      <div className="flex items-center justify-between h-16 px-6">
         <div className="flex items-center">
           <span className="text-xl font-bold text-indigo-600">Easy</span>
         </div>

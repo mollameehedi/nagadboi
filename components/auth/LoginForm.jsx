@@ -6,6 +6,7 @@ import logo from '../../public/logo.png';
 import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const LoginForm = () => {
 
@@ -36,6 +37,7 @@ const LoginForm = () => {
     const handleSendOtp = () => {
         // Placeholder for OTP sending logic
         console.log(`Sending OTP to: ${selectedCountry.code}${mobileNumber}`);
+        redirect('/dashboard/cashbooks')
     };
 
     // Helper to handle clicks outside the dropdown to close it
