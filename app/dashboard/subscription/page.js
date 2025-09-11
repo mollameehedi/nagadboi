@@ -8,7 +8,7 @@ const Subscription = () => {
     <div className='w-2/5 flex-1 p-8 space-y-6'>
         <div className="bg-white rounded-lg shadow-sm p-6 flex justify-between items-center border-l-4 border-gray-500/30">
           <div className="flex items-center space-x-4 self-start">
-            <Image src={favicon} height={50} width={50} className='self-start'/>
+            <Image src={favicon} height={50} width={50} alt='favicon' className='self-start'/>
             <div>
               <p className="text-gray-800 text-sm font-semibold">CashBooks Subscription</p>
               <h2 className="text-xl font-bold text-gray-900 mt-1">Essentials Plan</h2>
