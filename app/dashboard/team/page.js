@@ -5,7 +5,7 @@ import TeamItem from '@/components/Screen/Team/TeamItem'
 import { BsPersonCheck, BsWhatsapp } from 'react-icons/bs'
 import { MdKeyboardArrowRight, MdOutlineBusinessCenter } from 'react-icons/md'
 
-const team = () => {
+const Team = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeTab, setActiveTab] = useState('All');
 
@@ -116,4 +116,4 @@ const team = () => {
     )
 }
 
-export default team
+export default Team
