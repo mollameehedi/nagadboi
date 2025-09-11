@@ -1,7 +1,7 @@
 "use client"
+import React, { useState } from 'react'
 import Card from '@/components/Common/Card'
 import TeamItem from '@/components/Screen/Team/TeamItem'
-import React, { useState } from 'react'
 import { BsPersonCheck, BsWhatsapp } from 'react-icons/bs'
 import { MdKeyboardArrowRight, MdOutlineBusinessCenter } from 'react-icons/md'
 
