@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoMdClose } from 'react-icons/io';
 
-const RenameBookModal = ({ isOpen, onClose, currentName, onSave }) => {
+const AddOrRenameBookModal = ({ isOpen, onClose,actionName, currentName, onSave }) => {
   const [bookName, setBookName] = useState(currentName);
    useEffect(() => {
     setBookName(currentName);
@@ -13,31 +13,32 @@ const RenameBookModal = ({ isOpen, onClose, currentName, onSave }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-600/40 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-      <div className="relative p-8 bg-white w-full max-w-lg mx-auto rounded-sm shadow-lg">
-        <div className="flex justify-between items-center pb-3">
-          <h3 className="text-xl font-medium text-gray-900">Rename Book</h3>
+      <div className="relative bg-white w-full max-w-xl mx-auto rounded-lg shadow-lg">
+        <div className="flex justify-between items-center p-6 pb-3 border-b-1 border-gray-200">
+          <h3 className="text-xl font-medium text-gray-900">{ actionName }</h3>
           <button onClick={onClose} className='border border-gray-200 rounded-sm p-2 cursor-pointer'>
             <IoMdClose />
           </button>
         </div>
-        <div className="mt-2 space-y-4">
+        <div className="mt-2  p-8 py-3 space-y-4">
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Book Name</label>
+            <label className="block text-gray-700 text-sm font-medium mb-1">Book Name</label>
             <input 
               type="text" 
               className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
+              placeholder='e.g. Daily Expense'
               value={bookName} 
               onChange={(e) => setBookName(e.target.value)} 
             />
           </div>
         </div>
-        <div className="flex justify-end space-x-3 mt-6">
+        <div className="flex justify-end space-x-3 border-t-1 border-gray-200  p-8">
           <button onClick={onClose} className="px-6 py-2 text-gray-600 rounded-lg hover:bg-gray-200">Cancel</button>
-          <button onClick={() => onSave(bookName)} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+          <button onClick={() => onSave(bookName)} className="px-10 py-2 bg-primary text-white rounded-lg hover:bg-blue-700">Save</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default RenameBookModal
+export default AddOrRenameBookModal

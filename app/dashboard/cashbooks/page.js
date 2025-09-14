@@ -3,7 +3,7 @@
 import Icons from '@/app/assets/Icon';
 import CashBookItem from '@/components/Screen/Cashbook/CashBookItem';
 import EmailAddPopup from '@/components/Screen/Common/EmailAddPopup';
-import RenameBookModal from '@/components/Screen/Common/RenameBookModal';
+import AddOrRenameBookModal from '@/components/Screen/Common/AddOrRenameBookModal';
 import React, { useState } from 'react';
 import { IconBase } from 'react-icons';
 import { FaUserFriends } from 'react-icons/fa';
@@ -13,15 +13,13 @@ import { MdKeyboard, MdOutlineContentCopy, MdOutlineModeEdit, MdOutlineTurnRight
 import { RiWhatsappFill } from 'react-icons/ri';
 import { TbUsersPlus } from 'react-icons/tb';
 import { TiPlus } from 'react-icons/ti';
+import RightSide from '@/components/Screen/Cashbook/RightSide';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('Last Updated');
   const [hoveredBook, setHoveredBook] = useState(null);
-
-    const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
-
 
   const handleDropdownToggle = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -146,7 +144,7 @@ const CashBook = () => {
                   placeholder="Search by book name..."
                   value={searchTerm}
                   onChange={handleSearchChange}
-                  className="w-full pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-200 placeholder:text-gray-400"
+                  className="w-full pl-3 pr-4 py-2 border rounded-lg border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-200 placeholder:text-gray-400"
                 />
                 <svg className="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -189,9 +187,10 @@ const CashBook = () => {
                 )}
 
    {selectedBook && (
-                <RenameBookModal
+                <AddOrRenameBookModal
                     isOpen={isRenameModalOpen}
                     onClose={() => {setIsRenameModalOpen(false); selectedBook.name}}
+                    actionName='Rename Book'
                     currentName={selectedBook.name}
                     onSave={handleSaveBookName}
                 />
@@ -227,39 +226,7 @@ const CashBook = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:w-80 space-y-4">
-               <button className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors w-full">
-                  <TiPlus /> Add New Book
-                </button>
-
-            <div className=" p-4 rounded-xm border bg-green-200/20 border-gray-200 space-y-2">
-                <span className=' inline-block  rounded-full'>
-                <Icons.EmailPlush className="inline-block text-lg h-[40px]"/>
-                </span>
-                <h4 className=" text-sm font-semibold text-gray-600">Login via Email ID</h4>
-              <p className="text-gray-500 text-sm font-normal">Verify email to login to mobile app & desktop</p>
-              <button onClick={() => setIsEmailModalOpen(true)}  className="flex-1 flex items-center justify-center sm:flex-none px-6 py-2 bg-primary/90 text-white rounded-sm hover:bg-indigo-700 transition-colors">
-                Add Email
-              </button>
-            </div>
-               {/* Add Email Modal */}
-          <EmailAddPopup isOpen={isEmailModalOpen} onClose={() => setIsEmailModalOpen(false)} />
-
-
-             <div className="bg-white p-6 rounded-xm border border-gray-200 space-y-2">
-                <span className='bg-green-600/10 h-[50px] w-[50px] inline-block text-center leading-[50px] rounded-full'>
-                <RiWhatsappFill   className="text-green-600 inline-block  text-xl"/>
-                </span>
-                <h4 className=" text-sm font-semibold text-gray-600">Need help in business setup?</h4>
-              <p className="text-gray-500 text-sm font-normal">Our support team will help you</p>
-              <a href="#" className="flex-1 flex items-center justify-start sm:flex-none px-0 py-2 text-primary ">
-                Contact Us
-                <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
+          <RightSide/>
         </div>
       </div>
     </div>

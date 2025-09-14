@@ -4,6 +4,7 @@ import Card from '@/components/Common/Card'
 import TeamItem from '@/components/Screen/Team/TeamItem'
 import { BsPersonCheck, BsWhatsapp } from 'react-icons/bs'
 import { MdKeyboardArrowRight, MdOutlineBusinessCenter } from 'react-icons/md'
+import MemberRightSide from '@/components/Screen/Team/MemberRightSide'
 
 const Team = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -94,18 +95,7 @@ const Team = () => {
                         </div>
 
                     </div>
-                  <div className=" col-span-3">
-                    <Card className="space-y-4">
-                        <h3 className="text-xs font-normal text-gray-400">Add your business partners or staffs to this business and manage cashflow together</h3>
-                        <button
-                            className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center"
-                            onClick={handleAddTeamMember}
-                        >
-                            <BsPersonCheck className="w-5 h-5 mr-1" />
-                            Add team member
-                        </button>
-                    </Card>
-                </div>
+                 <MemberRightSide/>
                 </div>
                 {/* Right Sidebar */}
             </div>

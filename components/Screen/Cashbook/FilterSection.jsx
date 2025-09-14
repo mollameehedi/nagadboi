@@ -2,7 +2,7 @@
 import {FaChevronDown} from 'react-icons/fa'
 
 const FilterSection = () => (
-  <div className="flex items-center justify-between gap-4 p-4 border-b">
+  <div className="flex items-center justify-between gap-4 p-4 border-gray-200">
     <div className="flex flex-wrap gap-2 text-sm text-gray-500">
       <div className="relative inline-block">
         <select className="appearance-none bg-white border border-gray-200 text-gray-700 py-1 pl-3 pr-8 rounded-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500">

@@ -1,13 +1,18 @@
 "use client"
 
+import { useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa'
-const SummaryCards = ({ cashIn, cashOut, netBalance }) => (
+const SummaryCards = ({ cashIn, cashOut, netBalance }) => {
+
+  return (
+  <>
+  
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
     <div className="bg-white p-4 rounded-lg shadow-sm border border-green-200">
-      <div className="flex items-center text-green-600 mb-2">
+      <button className="flex items-center cursor-pointer text-green-600 mb-2">
         <FaPlus className="w-5 h-5 mr-2" />
-        <span className="text-sm font-medium">Cash In</span>
-      </div>
+        <span className="text-sm font-medium">Cash In me</span>
+      </button>
       <div className="text-2xl font-bold text-green-600">{cashIn}</div>
     </div>
     <div className="bg-white p-4 rounded-lg shadow-sm border border-red-200">
@@ -24,6 +29,9 @@ const SummaryCards = ({ cashIn, cashOut, netBalance }) => (
       <div className="text-2xl font-bold text-indigo-600">{netBalance}</div>
     </div>
   </div>
+  
+  </>
 );
+}
 
 export default SummaryCards

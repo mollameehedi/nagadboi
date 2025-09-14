@@ -3,7 +3,7 @@ import {FaTrashAlt, FaPencilAlt } from 'react-icons/fa'
 
 const TransactionTable = ({ transactions }) => (
   <div className="overflow-x-auto p-4">
-    <div className="bg-white rounded-lg shadow-sm border">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
