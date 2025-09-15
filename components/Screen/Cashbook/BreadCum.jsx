@@ -8,7 +8,7 @@ import { TbUsersPlus } from 'react-icons/tb'
 const BreadCum = () => {
   return (
        <div className='px-6'>
-        <div className="flex items-center justify-between h-16 border-b-1  sticky top-0 border-gray-200 z-20">
+        <div className="flex items-center justify-between h-16 border-b-1  top-0 border-gray-200 z-20">
             <div className="flex items-center flex justify-content-between gap-5">
                 <span> <FaArrowLeft className='text-gray-600 text-xl font-normal' /></span>
               <span className="text-xl font-medium text-gray-900">Shafi SketchBook</span>

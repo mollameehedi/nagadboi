@@ -22,7 +22,7 @@ const Header = () => {
                         <BiChevronDown className="w-4 h-4 text-gray-500" />
                       </button>
                       {dropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-999">
+                        <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg border-gray-200 bg-white border  z-999">
                           <div className="py-1">
                             <div className="flex items-center space-x-2 p-4">
                               <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-lg">

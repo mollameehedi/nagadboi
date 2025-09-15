@@ -2,24 +2,21 @@
 
 import Icons from '@/app/assets/Icon';
 import CashBookItem from '@/components/Screen/Cashbook/CashBookItem';
-import EmailAddPopup from '@/components/Screen/Common/EmailAddPopup';
 import AddOrRenameBookModal from '@/components/Screen/Common/AddOrRenameBookModal';
 import React, { useState } from 'react';
-import { IconBase } from 'react-icons';
-import { FaUserFriends } from 'react-icons/fa';
 import { FaUsers } from 'react-icons/fa6';
-import { IoLogoWhatsapp } from 'react-icons/io';
-import { MdKeyboard, MdOutlineContentCopy, MdOutlineModeEdit, MdOutlineTurnRight } from 'react-icons/md';
-import { RiWhatsappFill } from 'react-icons/ri';
-import { TbUsersPlus } from 'react-icons/tb';
-import { TiPlus } from 'react-icons/ti';
+import { MdKeyboard} from 'react-icons/md';
 import RightSide from '@/components/Screen/Cashbook/RightSide';
+import LeftModal from '@/components/Common/LeftModal/LeftModal';
+import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('Last Updated');
   const [hoveredBook, setHoveredBook] = useState(null);
+  const[isDuplicateOpen,setIsDuplicateOpen] = useState(false)
+  const[duplicateSelect,setDuplicateSelect] = useState(false)
 
   const handleDropdownToggle = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -86,7 +83,8 @@ const CashBook = () => {
     };
 
     const handleCopyBook = (bookId) => {
-        alert(`Copying book with ID: ${bookId}`);
+      
+      
     };
 
     const handleAddUsers = (bookId) => {
@@ -94,7 +92,10 @@ const CashBook = () => {
     };
 
     const handleLeaveBook = (bookId) => {
-        alert(`Leaving book with ID: ${bookId}`);
+      
+        setDuplicateSelect(bookId);
+      setIsDuplicateOpen(true)
+      console.log(bookId);
     };
 
 
@@ -194,6 +195,12 @@ const CashBook = () => {
                     currentName={selectedBook.name}
                     onSave={handleSaveBookName}
                 />
+            )}
+            {duplicateSelect && (
+              <DuplicateBook
+              isOpen={isDuplicateOpen}
+              onClose={()=> setIsDuplicateOpen(false)}
+              />
             )}
             </div>
 
