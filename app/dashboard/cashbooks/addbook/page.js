@@ -2,12 +2,23 @@
 import EditRole from '@/components/Screen/Cashbook/AddBook/EditRole';
 import EntryField from '@/components/Screen/Cashbook/AddBook/EntryField';
 import Member from '@/components/Screen/Cashbook/AddBook/Member';
+import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
+import MoveBook from '@/components/Screen/Cashbook/MoveBook';
+import AddOrRenameBookModal from '@/components/Screen/Common/AddOrRenameBookModal';
 import React, { useState } from 'react'
-import { FaArrowLeft, FaPencilAlt, FaRegFileAlt, FaTrashAlt, FaUserPlus } from 'react-icons/fa';
+import { FaArrowLeft, FaPencilAlt,  FaTrashAlt } from 'react-icons/fa';
 import { MdContentCopy } from 'react-icons/md';
 
 const AddBook = () => {
      const [activeTab, setActiveTab] = useState('members');
+
+       const[isDuplicateOpen,setIsDuplicateOpen] = useState(false)
+       const[duplicateSelect,setDuplicateSelect] = useState(false)
+      const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
+       const [selectedBook, setSelectedBook] = useState(null);
+
+
+
 
     const renderContent = () => {
         switch (activeTab) {
@@ -21,6 +32,32 @@ const AddBook = () => {
                 return null;
         }
     };
+
+     const handleCopyBook = (bookId) => {
+       setDuplicateSelect(bookId);
+      setIsDuplicateOpen(true)
+      
+    };
+
+    const handleAddUsers = (bookId) => {
+        alert(`Adding users to book with ID: ${bookId}`);
+    };
+
+     const handleRenameBook = (id) => {
+        setSelectedBook(id)
+        setIsRenameModalOpen(true);
+    };
+
+        const handleSaveBookName = (newName) => {
+        setCashbooks(
+            cashbooks.map(book =>
+                book.id === selectedBook.id ? { ...book, name: newName } : book
+            )
+        );
+        setIsRenameModalOpen(false);
+    };
+
+    
     return (
         <div className="flex-1 bg-white  h-full">
                     <div className=" py-6">
@@ -32,11 +69,11 @@ const AddBook = () => {
                                 <span className="text-gray-400 text-sm font-light">(Office Expence)</span>
                             </div>
                             <div className="flex space-x-4">
-                                <button className="flex items-center space-x-2 px-4 py-2 text-xs  text-primary font-medium hover:bg-gray-50 transition-colors">
+                                <button onClick={() => handleRenameBook('office_Expence')} className="flex items-center space-x-2 px-4 py-2 text-xs  text-primary font-medium hover:bg-gray-50 transition-colors">
                                     <FaPencilAlt className="w-4 h-4" />
                                     <span>Rename Book</span>
                                 </button>
-                                <button className="flex items-center space-x-2 px-4 py-2 text-xs  text-primary font-medium hover:bg-gray-50 transition-colors">
+                                <button onClick={()=>handleCopyBook('offer exchange')} className="flex items-center space-x-2 px-4 py-2 text-xs  text-primary font-medium hover:bg-gray-50 transition-colors">
                                     <MdContentCopy className="w-4 h-4" />
                                     <span>Duplicate Book</span>
                                 </button>
@@ -46,6 +83,22 @@ const AddBook = () => {
                                 </button>
                             </div>
                         </div>
+
+                         {duplicateSelect && (
+              <DuplicateBook
+              isOpen={isDuplicateOpen}
+              onClose={()=> setIsDuplicateOpen(false)}
+              />
+            )}
+            {selectedBook && (
+                <AddOrRenameBookModal
+                    isOpen={isRenameModalOpen}
+                    onClose={() => {setIsRenameModalOpen(false); selectedBook}}
+                    actionName='Rename Book'
+                    currentName={selectedBook}
+                    onSave={handleSaveBookName}
+                />
+            )}
 
                         {/* Settings Sub-menu and Content */}
                           <div className="flex">

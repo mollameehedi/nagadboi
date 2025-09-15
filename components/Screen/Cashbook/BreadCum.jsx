@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { GoDownload } from 'react-icons/go'
@@ -12,7 +13,7 @@ const BreadCum = () => {
             <div className="flex items-center flex justify-content-between gap-5">
                 <span> <FaArrowLeft className='text-gray-600 text-xl font-normal' /></span>
               <span className="text-xl font-medium text-gray-900">Shafi SketchBook</span>
-               <span> <MdOutlineSettings className='text-primary text-xl font-normal' /></span>
+               <Link href='/dashboard/cashbooks/addbook'> <MdOutlineSettings className='text-primary text-xl font-normal' /></Link>
                <span className='text-lg text-gray-400'>|</span>
                <span><TbUsersPlus  className='text-primary text-xl font-normal'/></span>
             </div>
