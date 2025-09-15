@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LeftModal = ({ isOpen, children}) => {
+const RightModal = ({ isOpen, children}) => {
   
   if (!isOpen) return null;
 
@@ -13,4 +13,4 @@ const LeftModal = ({ isOpen, children}) => {
   );
 };
 
-export default LeftModal
+export default RightModal

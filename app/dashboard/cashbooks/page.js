@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { FaUsers } from 'react-icons/fa6';
 import { MdKeyboard} from 'react-icons/md';
 import RightSide from '@/components/Screen/Cashbook/RightSide';
-import LeftModal from '@/components/Common/LeftModal/LeftModal';
+import LeftModal from '@/components/Common/RightModal/RightModal';
 import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
 import MoveBok from '@/components/Screen/Cashbook/MoveBook';
 import MoveBook from '@/components/Screen/Cashbook/MoveBook';

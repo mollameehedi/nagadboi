@@ -5,10 +5,12 @@ import TeamItem from '@/components/Screen/Team/TeamItem'
 import { BsPersonCheck, BsWhatsapp } from 'react-icons/bs'
 import { MdKeyboardArrowRight, MdOutlineBusinessCenter } from 'react-icons/md'
 import MemberRightSide from '@/components/Screen/Team/MemberRightSide'
+import RoleAndPermission from '@/components/Screen/Team/RoleAndPermission'
 
 const Team = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeTab, setActiveTab] = useState('All');
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -50,10 +52,11 @@ const Team = () => {
                             <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                                 <h2 className="text-lg font-semibold text-gray-800">Total Members ({teamMembers.length})</h2>
                             </div>
-                            <a href="#" className="flex items-center text-blue-600 font-semibold hover:text-blue-700 whitespace-nowrap">
+                            <button onClick={() => setIsOpen(true)} className="flex items-center cursor-pointer text-primary font-normal hover:text-blue-700 whitespace-nowrap">
                                 View roles & permissions
                                 <MdKeyboardArrowRight className="w-4 h-4 ml-1" />
-                            </a>
+                            </button>
+                            {isOpen && <RoleAndPermission isOpen={isOpen} onClose={() => setIsOpen(false)}/>}
                         </div>
                         <div className="relative w-2/5">
                             <input

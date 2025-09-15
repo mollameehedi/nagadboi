@@ -1,9 +1,8 @@
 "use client"
 import FormInput from '@/components/Common/FormInput'
-import Input from '@/components/Common/Input'
-import LeftModal from '@/components/Common/LeftModal/LeftModal'
-import LeftModalFooter from '@/components/Common/LeftModal/LeftModalFooter'
-import LeftModalHeader from '@/components/Common/LeftModal/LeftModalHeader'
+import RightModal from '@/components/Common/RightModal/RightModal'
+import RightModalFooter from '@/components/Common/RightModal/RightModalFooter'
+import RightModalHeader from '@/components/Common/RightModal/RightModalHeader'
 import React, { useState } from 'react'
 import { IoMdInformationCircle } from 'react-icons/io'
 
@@ -30,9 +29,9 @@ const DuplicateBook = ({isOpen,onClose}) => {
   };
 
   return (
-    <LeftModal isOpen={isOpen}>
+    <RightModal isOpen={isOpen}>
         <div>
-            <LeftModalHeader title={'Duplicate September Expenses'} onClose={onClose} />
+            <RightModalHeader title={'Duplicate September Expenses'} onClose={onClose} />
 <div className="space-y-4">
           <div className="p-4 bg-blue-100 text-gray-900 text-sm flex">
            <IoMdInformationCircle className="text-primary text-2xl mr-3"/> <span>Create new book with same settings as Business Book</span>
@@ -102,8 +101,8 @@ const DuplicateBook = ({isOpen,onClose}) => {
           </div>
         </div>
         </div>
-        <LeftModalFooter btn_text2="Add New Book" btn_txt1="Cancel"/>
-    </LeftModal>
+        <RightModalFooter btn_text2="Add New Book" btn_txt1="Cancel"/>
+    </RightModal>
   )
 }
 
