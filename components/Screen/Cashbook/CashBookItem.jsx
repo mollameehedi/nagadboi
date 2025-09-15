@@ -46,7 +46,7 @@ const CashBookItem = ({ name,balance,updatedDays,memeber , onRenameBook, onCopyB
                         <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {e.preventDefault();onCopyBook()}}>
                           <MdOutlineContentCopy />
                         </button>
-                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {onAddUsers()}}>
+                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {e.preventDefault();onAddUsers()}}>
                           <TbUsersPlus />
                         </button>
                         <button className="text-red-700 text-2xl cursor-pointer"  onClick={(e) => {e.preventDefault();onLeaveBook()}}>

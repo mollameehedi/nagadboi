@@ -7,10 +7,9 @@ import React, { useState } from 'react';
 import { FaUsers } from 'react-icons/fa6';
 import { MdKeyboard} from 'react-icons/md';
 import RightSide from '@/components/Screen/Cashbook/RightSide';
-import LeftModal from '@/components/Common/RightModal/RightModal';
 import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
-import MoveBok from '@/components/Screen/Cashbook/MoveBook';
 import MoveBook from '@/components/Screen/Cashbook/MoveBook';
+import { redirect } from 'next/navigation';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -93,7 +92,7 @@ const CashBook = () => {
     };
 
     const handleAddUsers = (bookId) => {
-        alert(`Adding users to book with ID: ${bookId}`);
+        redirect(`/dashboard/cashbooks/addbook`)
     };
 
     const handleLeaveBook = (bookId) => {
