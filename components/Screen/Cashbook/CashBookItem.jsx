@@ -43,14 +43,14 @@ const CashBookItem = ({ name,balance,updatedDays,memeber , onRenameBook, onCopyB
             }}>
                           <MdOutlineModeEdit />
                         </button>
-                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {e.preventDefault();onLeaveBook()}}>
+                        <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {e.preventDefault();onCopyBook()}}>
                           <MdOutlineContentCopy />
                         </button>
                         <button className="text-primary text-2xl cursor-pointer" onClick={(e) => {onAddUsers()}}>
                           <TbUsersPlus />
                         </button>
-                        <button className="text-red-700 text-2xl cursor-pointer">
-                          <MdOutlineTurnRight  onClick={(e) => {onLeaveBook()}}/>
+                        <button className="text-red-700 text-2xl cursor-pointer"  onClick={(e) => {e.preventDefault();onLeaveBook()}}>
+                          <MdOutlineTurnRight />
                         </button>
                       </div>
                     </div>

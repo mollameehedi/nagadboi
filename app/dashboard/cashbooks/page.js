@@ -9,6 +9,8 @@ import { MdKeyboard} from 'react-icons/md';
 import RightSide from '@/components/Screen/Cashbook/RightSide';
 import LeftModal from '@/components/Common/LeftModal/LeftModal';
 import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
+import MoveBok from '@/components/Screen/Cashbook/MoveBook';
+import MoveBook from '@/components/Screen/Cashbook/MoveBook';
 
 const CashBook = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -17,6 +19,8 @@ const CashBook = () => {
   const [hoveredBook, setHoveredBook] = useState(null);
   const[isDuplicateOpen,setIsDuplicateOpen] = useState(false)
   const[duplicateSelect,setDuplicateSelect] = useState(false)
+  const[isLeaveOpen,setIsLeaveOpen] = useState(false)
+  const[leaveSelect,setLeaveSelectSelect] = useState(false)
 
   const handleDropdownToggle = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -83,7 +87,8 @@ const CashBook = () => {
     };
 
     const handleCopyBook = (bookId) => {
-      
+       setDuplicateSelect(bookId);
+      setIsDuplicateOpen(true)
       
     };
 
@@ -92,10 +97,9 @@ const CashBook = () => {
     };
 
     const handleLeaveBook = (bookId) => {
-      
-        setDuplicateSelect(bookId);
-      setIsDuplicateOpen(true)
-      console.log(bookId);
+       setLeaveSelectSelect(bookId);
+      setIsLeaveOpen(true)
+       
     };
 
 
@@ -202,7 +206,14 @@ const CashBook = () => {
               onClose={()=> setIsDuplicateOpen(false)}
               />
             )}
+            {leaveSelect && (
+              <MoveBook
+              isOpen={isLeaveOpen}
+              onClose={()=> setIsLeaveOpen(false)}
+              />
+            )}
             </div>
+            
 
             {/* Add New Book Section */}
             <div className="bg-white p-4 rounded-sm border border-gray-200 space-y-4">
