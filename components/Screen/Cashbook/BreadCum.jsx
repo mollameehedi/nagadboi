@@ -11,11 +11,11 @@ const BreadCum = () => {
        <div className='px-6'>
         <div className="flex items-center justify-between h-16 border-b-1  top-0 border-gray-200 z-20">
             <div className="flex items-center flex justify-content-between gap-5">
-                <span> <FaArrowLeft className='text-gray-600 text-xl font-normal' /></span>
+                <Link href='/dashboard/cashbooks'> <FaArrowLeft className='text-gray-600 text-xl font-normal' /></Link>
               <span className="text-xl font-medium text-gray-900">Shafi SketchBook</span>
                <Link href='/dashboard/cashbooks/addbook'> <MdOutlineSettings className='text-primary text-xl font-normal' /></Link>
                <span className='text-lg text-gray-400'>|</span>
-               <span><TbUsersPlus  className='text-primary text-xl font-normal'/></span>
+               <Link href='/dashboard/cashbooks/addbook'><TbUsersPlus  className='text-primary text-xl font-normal'/></Link>
             </div>
             <div className="flex items-center space-x-6">
               <button className="rounded text-center text-base focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-medium gap-2 items-center justify-center inline-flex px-6 h-[40px] bg-transparent hover:border-blue-900 text-primary">

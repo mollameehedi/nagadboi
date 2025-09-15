@@ -5,6 +5,7 @@ import Member from '@/components/Screen/Cashbook/AddBook/Member';
 import DuplicateBook from '@/components/Screen/Cashbook/DuplicateBook';
 import MoveBook from '@/components/Screen/Cashbook/MoveBook';
 import AddOrRenameBookModal from '@/components/Screen/Common/AddOrRenameBookModal';
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { FaArrowLeft, FaPencilAlt,  FaTrashAlt } from 'react-icons/fa';
 import { MdContentCopy } from 'react-icons/md';
@@ -57,14 +58,15 @@ const AddBook = () => {
         setIsRenameModalOpen(false);
     };
 
-    
+
     return (
         <div className="flex-1 bg-white  h-full">
                     <div className=" py-6">
                         {/* Action Bar */}
                         <div className="flex justify-between items-center pb-4 border-b border-gray-200 px-5">
                             <div className="flex items-center space-x-2 text-gray-900">
-                                <FaArrowLeft className="w-4 h-4 font-medium  " />
+                                <Link  href='/dashboard/cashbooks'> <FaArrowLeft className="w-4 h-4 font-medium  " /></Link>
+                               
                                 <span className="font-medium text-base ">Settings</span>
                                 <span className="text-gray-400 text-sm font-light">(Office Expence)</span>
                             </div>

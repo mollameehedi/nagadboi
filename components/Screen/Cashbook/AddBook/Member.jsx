@@ -1,9 +1,12 @@
+"use client"
 import Card from '@/components/Common/Card'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUserPlus } from 'react-icons/fa'
 import { TbUsersPlus } from 'react-icons/tb'
+import RoleAndPermission from '../../Team/RoleAndPermission'
 
 const Member = () => {
+    const[isOpen,setIsOpen] = useState(false)
   return (
     <>
                         <Card className="flex justify-between items-center p-5">
@@ -21,12 +24,13 @@ const Member = () => {
                         <div className="mt-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-lg font-semibold text-gray-900">Total Members (2)</h3>
-                                <a href="#" className="flex items-center text-blue-500 text-sm font-medium hover:underline">
+                                <button onClick={() => setIsOpen(true)}  href="#" className="flex items-center text-blue-500 text-sm font-medium hover:underline">
                                     <span>View roles & permissions</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </button>
+                                  {isOpen && <RoleAndPermission isOpen={isOpen} onClose={() => setIsOpen(false)}/>}
                             </div>
                             <h4 className='text-sm text-gray-500 font-semibold py-2'>Members in this book</h4>
                             <div className="space-y-4">
