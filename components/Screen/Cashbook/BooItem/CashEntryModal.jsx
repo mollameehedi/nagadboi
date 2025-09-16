@@ -5,25 +5,38 @@ import { IoMdClose } from 'react-icons/io';
 import { IoChevronDownCircleOutline } from 'react-icons/io5';
 import { MdAttachFile } from 'react-icons/md';
 import { PiPlusCircleDuotone } from 'react-icons/pi';
-import AddContactModal from './AddContactModal';
+import { FiPlusCircle } from 'react-icons/fi';
+import AddContactModal from './CashEntry/AddContactModal';
+import AddNewCategory from './CashEntry/AddNewCategory';
 
 const CashEntryModal = ({ isOpen, onClose }) => {
   const [entryType, setEntryType] = useState('cashIn');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [time, setTime] = useState(new Date().toTimeString().split(' ')[0].substring(0, 5));
 
-    const [contactSearch, setContactSearch] = useState('');
-  const [selectedContact, setSelectedContact] = useState(null);
+  const [contactSearch, setContactSearch] = useState('');
+  const [selectedContact, setSelectedContact] = useState('fuel');
   const [showContactsDropdown, setShowContactsDropdown] = useState(false);
   const [showAddContactModal, setShowAddContactModal] = useState(false);
   const [showImportBulkModal, setShowImportBulkModal] = useState(false);
 
 
-  
+
+  // State for Category
+  const [categories, setCategories] = useState([
+    { id: 1, name: 'Fuel' },
+    { id: 2, name: 'Groceries' },
+    { id: 3, name: 'Rent' },
+    { id: 4, name: 'Salary' },
+  ]);
+  const [categorySearch, setCategorySearch] = useState('');
+  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+  const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
+
   if (!isOpen) return null;
 
 
-  
+
   const handleContactSelect = (contact) => {
     setSelectedContact(contact);
     setContactSearch(contact.name);
@@ -47,71 +60,83 @@ const CashEntryModal = ({ isOpen, onClose }) => {
   };
 
 
+
+  // Category Handlers
+  const filteredCategories = categories.filter(category =>
+    category.name.toLowerCase().includes(categorySearch.toLowerCase())
+  );
+  const handleCategorySelect = (category) => {
+    setCategorySearch(category.name);
+    setShowCategoriesDropdown(false);
+  };
+
+
+
   return (
     <>
-    <div className={`fixed inset-0 bg-gray-600/40 z-50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className={`fixed top-0 p-3 right-0 h-full flex justify-between flex-col w-full max-w-xl bg-white shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-       <div>
-         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-gray-200">
-          <h3 className={`text-xl font-medium text-gray-900 ${entryType === 'cashIn' ? 'text-green-700' : 'text-red-700'}`}>Add Cash In Entry</h3>
-          <button onClick={onClose} className='p-2 cursor-pointer'>
-            <IoMdClose />
-          </button>
-        </div>
+      <div className={`fixed inset-0 bg-gray-600/40 z-50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`fixed top-0 p-3 right-0 h-full flex justify-between flex-col w-full max-w-xl bg-white shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div>
+            {/* Header */}
+            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+              <h3 className={`text-xl font-medium text-gray-900 ${entryType === 'cashIn' ? 'text-green-700' : 'text-red-700'}`}>Add Cash In Entry</h3>
+              <button onClick={onClose} className='p-2 cursor-pointer'>
+                <IoMdClose />
+              </button>
+            </div>
 
-        {/* Body */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6">
-          <div className="flex space-x-2 mb-6">
-            <button
-              className={`px-4 py-2 rounded-full border border-gray-200 text-sm font-normal cursor-pointer  ${entryType === 'cashIn' ? 'bg-green-700 text-white forn-normal' : ' text-gray-800'}`}
-              onClick={() => setEntryType('cashIn')}
-            >
-              Cash In
-            </button>
-            <button 
-              className={`px-4 py-2 rounded-full border border-gray-200 text-sm font-normal  cursor-pointer ${entryType === 'cashOut' ? 'bg-red-700 text-white forn-normal' : ' text-gray-800'}`}
-              onClick={() => setEntryType('cashOut')}
-            >
-              Cash Out
-            </button>
-          </div>
+            {/* Body */}
+            <div className="flex-1  h-full p-4 md:p-6">
+              <div className="flex space-x-2 mb-6">
+                <button
+                  className={`px-4 py-2 rounded-full border border-gray-200 text-sm font-normal cursor-pointer  ${entryType === 'cashIn' ? 'bg-green-700 text-white forn-normal' : ' text-gray-800'}`}
+                  onClick={() => setEntryType('cashIn')}
+                >
+                  Cash In
+                </button>
+                <button
+                  className={`px-4 py-2 rounded-full border border-gray-200 text-sm font-normal  cursor-pointer ${entryType === 'cashOut' ? 'bg-red-700 text-white forn-normal' : ' text-gray-800'}`}
+                  onClick={() => setEntryType('cashOut')}
+                >
+                  Cash Out
+                </button>
+              </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">Date *</label>
-              <div className="relative">
-                <input 
-                  type="date" 
-                  className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-gray-700 font-medium mb-1">Date *</label>
+                  <div className="relative">
+                    <input
+                      type="date"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium mb-1">Time *</label>
+                  <div className="relative">
+                    <input
+                      type="time"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-medium mb-1">Amount <span className='text-red-700'>*</span></label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="e.g. 890 or 100 + 200 + 3"
                 />
               </div>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">Time *</label>
-              <div className="relative">
-                <input 
-                  type="time" 
-                  className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-          
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-medium mb-1">Amount <span className='text-red-700'>*</span></label>
-            <input 
-              type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              placeholder="e.g. 890 or 100 + 200 + 3"
-            />
-          </div>
 
-          {/* <div className="mb-4">
+              {/* <div className="mb-4">
             <label className="block text-gray-700 text-sm font-medium mb-1">Contact Name</label>
             <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Search or Select</option>
@@ -120,7 +145,7 @@ const CashEntryModal = ({ isOpen, onClose }) => {
             </select>
           </div> */}
 
-                 <div className="mb-4">
+              <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-medium mb-1">Contact Name</label>
                 <div className="relative">
                   <input
@@ -132,20 +157,19 @@ const CashEntryModal = ({ isOpen, onClose }) => {
                     onFocus={() => setShowContactsDropdown(true)}
                     onBlur={() => setTimeout(() => setShowContactsDropdown(false), 200)}
                   />
-                  <IoChevronDownCircleOutline />
                   {showContactsDropdown && (
-                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-sm shadow-lg max-h-48 overflow-y-auto">
+                    <div className="absolute z-10 p-3 w-full mt-1 bg-white border border-gray-200 rounded-sm shadow-lg max-h-48 overflow-y-auto">
                       <button
-                        className="flex items-center w-full px-4 py-2 text-sm text-blue-600 hover:bg-gray-100"
+                        className="flex items-center font-medium w-full px-4 py-2 text-sm text-blue-600 hover:bg-gray-100"
                         onMouseDown={handleAddContactClick}
                       >
-                        <PiPlusCircleDuotone /> Add New Contact
+                        <PiPlusCircleDuotone className='text-2xl mr-3' /> Add New Contact
                       </button>
                       <button
-                        className="flex items-center w-full px-4 py-2 text-sm text-green-600 hover:bg-gray-100"
+                        className="flex items-center w-ful font-medium  px-4 py-2 text-sm text-green-600 hover:bg-gray-100"
                         onMouseDown={handleImportBulkClick}
                       >
-                        <FaFileImport /> Import Bulk contacts from CSV
+                        <FaFileImport className='text-xl mr-3' /> Import Bulk contacts from CSV
                       </button>
                       {/* {filteredContacts.length > 0 ? (
                         filteredContacts.map(contact => (
@@ -169,52 +193,87 @@ const CashEntryModal = ({ isOpen, onClose }) => {
               </div>
 
 
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-medium mb-1">Remarks</label>
-            <input 
-              type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              placeholder="e.g. Enter Details (Name, Bill No, Item Name, Quantity etc)"
-            />
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-medium mb-1">Remarks</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="e.g. Enter Details (Name, Bill No, Item Name, Quantity etc)"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-1">Category</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Search or Select"
+                      value={categorySearch}
+                      onChange={(e) => {
+                        setCategorySearch(e.target.value);
+                        setShowCategoriesDropdown(true);
+                      }}
+                      onFocus={() => setShowCategoriesDropdown(true)}
+                      onBlur={() => setTimeout(() => setShowCategoriesDropdown(false), 200)}
+                    />
+                    {showCategoriesDropdown && (
+                      <div className="absolute z-10 p-3 w-full mt-1 bg-white border border-gray-200 rounded-sm shadow-lg">
+                        <div className='overflow-y-auto  max-h-48'>
+                          {filteredCategories.length > 0 ? (
+                            filteredCategories.map(category => (
+                              <div
+                                key={category.id}
+                                className="px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-100"
+                                onMouseDown={() => handleCategorySelect(category)}
+                              >
+                                {category.name}
+                              </div>
+                            ))
+                          ) : (
+                            <div className="px-4 py-2 text-gray-500">No categories found.</div>
+                          )}
+                        </div>
+                        <button
+                          className="flex items-center font-medium w-full px-4 py-2  max-h-12 h-12 text-sm text-blue-600 hover:bg-gray-100 mt-2"
+                          onMouseDown={() => setShowAddCategoryModal(true)}
+                        >
+                          <FiPlusCircle className="text-blue-600" /> Add New Category
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-1">Payment Mode</label>
+                  <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Cash</option>
+                    <option>Online</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <button className="flex items-center  space-x-1 text-primary rounded-sm border px-5 p-1 border-gray-200 hover:text-blue-800">
+                  <MdAttachFile />
+                  <span>Attach Bills</span>
+                </button>
+                <p className="text-sm text-gray-500 mt-1">Attach up to 4 images or PDF files</p>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-1">Category</label>
-              <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">Search or Select</option>
-                <option>Fuel</option>
-                <option>Groceries</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-1">Payment Mode</label>
-              <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>Cash</option>
-                <option>Online</option>
-              </select>
-            </div>
+          {/* Footer */}
+          <div className="p-4 border-t border-gray-200 flex justify-end space-x-3">
+            <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-gray-200 cursor-pointer">Save</button>
+            <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer">Save & Add New</button>
           </div>
-          
-          <div className="mb-6">
-            <button className="flex items-center  space-x-1 text-primary rounded-sm border px-5 p-1 border-gray-200 hover:text-blue-800">
-              <MdAttachFile />
-              <span>Attach Bills</span>
-            </button>
-            <p className="text-sm text-gray-500 mt-1">Attach up to 4 images or PDF files</p>
-          </div>
-        </div>
-       </div>
-        
-        {/* Footer */}
-        <div className="p-4 border-t border-gray-200 flex justify-end space-x-3">
-          <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-gray-200 cursor-pointer">Save</button>
-          <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer">Save & Add New</button>
         </div>
       </div>
-    </div>
-<AddContactModal isOpen={showAddContactModal} onClose={() => setShowAddContactModal(false)}/>
-  </>
+      <AddContactModal isOpen={showAddContactModal} onClose={() => setShowAddContactModal(false)} />
+      <AddNewCategory isOpen={showAddCategoryModal} onClose={() => setShowAddCategoryModal(false)} />
+    </>
   );
 };
 
