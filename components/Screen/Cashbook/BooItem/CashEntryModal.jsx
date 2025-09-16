@@ -1,16 +1,54 @@
 "use client"
 import React, { useState } from 'react'
+import { FaFileImport } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
+import { IoChevronDownCircleOutline } from 'react-icons/io5';
 import { MdAttachFile } from 'react-icons/md';
+import { PiPlusCircleDuotone } from 'react-icons/pi';
+import AddContactModal from './AddContactModal';
 
 const CashEntryModal = ({ isOpen, onClose }) => {
   const [entryType, setEntryType] = useState('cashIn');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [time, setTime] = useState(new Date().toTimeString().split(' ')[0].substring(0, 5));
+
+    const [contactSearch, setContactSearch] = useState('');
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [showContactsDropdown, setShowContactsDropdown] = useState(false);
+  const [showAddContactModal, setShowAddContactModal] = useState(false);
+  const [showImportBulkModal, setShowImportBulkModal] = useState(false);
+
+
   
   if (!isOpen) return null;
 
+
+  
+  const handleContactSelect = (contact) => {
+    setSelectedContact(contact);
+    setContactSearch(contact.name);
+    setShowContactsDropdown(false);
+  };
+
+  const handleSearchChange = (e) => {
+    setContactSearch(e.target.value);
+    setSelectedContact(null);
+    setShowContactsDropdown(true);
+  };
+
+  const handleAddContactClick = () => {
+    setShowContactsDropdown(false);
+    setShowAddContactModal(true);
+  };
+
+  const handleImportBulkClick = () => {
+    setShowContactsDropdown(false);
+    setShowImportBulkModal(true);
+  };
+
+
   return (
+    <>
     <div className={`fixed inset-0 bg-gray-600/40 z-50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div className={`fixed top-0 p-3 right-0 h-full flex justify-between flex-col w-full max-w-xl bg-white shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
        <div>
@@ -73,14 +111,63 @@ const CashEntryModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-gray-700 text-sm font-medium mb-1">Contact Name</label>
             <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Search or Select</option>
               <option>John Doe</option>
               <option>Jane Smith</option>
             </select>
-          </div>
+          </div> */}
+
+                 <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-medium mb-1">Contact Name</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Search or Select"
+                    value={contactSearch}
+                    onChange={handleSearchChange}
+                    onFocus={() => setShowContactsDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowContactsDropdown(false), 200)}
+                  />
+                  <IoChevronDownCircleOutline />
+                  {showContactsDropdown && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-sm shadow-lg max-h-48 overflow-y-auto">
+                      <button
+                        className="flex items-center w-full px-4 py-2 text-sm text-blue-600 hover:bg-gray-100"
+                        onMouseDown={handleAddContactClick}
+                      >
+                        <PiPlusCircleDuotone /> Add New Contact
+                      </button>
+                      <button
+                        className="flex items-center w-full px-4 py-2 text-sm text-green-600 hover:bg-gray-100"
+                        onMouseDown={handleImportBulkClick}
+                      >
+                        <FaFileImport /> Import Bulk contacts from CSV
+                      </button>
+                      {/* {filteredContacts.length > 0 ? (
+                        filteredContacts.map(contact => (
+                          <div
+                            key={contact.id}
+                            className="px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-100"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              handleContactSelect(contact);
+                            }}
+                          >
+                            {contact.name}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="px-4 py-2 text-gray-500">No contacts found.</div>
+                      )} */}
+                    </div>
+                  )}
+                </div>
+              </div>
+
 
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-medium mb-1">Remarks</label>
@@ -126,6 +213,8 @@ const CashEntryModal = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
+<AddContactModal isOpen={showAddContactModal} onClose={() => setShowAddContactModal(false)}/>
+  </>
   );
 };
 

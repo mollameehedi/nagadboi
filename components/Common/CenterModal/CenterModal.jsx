@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoMdClose } from 'react-icons/io';
 
-const CenterModal = ({title,children,onClose,isOpen,handleSubmite}) => {
+const CenterModal = ({title,children,onClose,isOpen,handleSubmite,className}) => {
     
     if (!isOpen) return null;
   
@@ -14,7 +14,7 @@ const CenterModal = ({title,children,onClose,isOpen,handleSubmite}) => {
               <IoMdClose />
             </button>
           </div>
-          <div className="mt-2 py-3 space-y-4">
+          <div className={` py-3 space-y-4 ${className}`}>
            {children}
           </div>
         </div>

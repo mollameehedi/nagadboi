@@ -119,7 +119,7 @@ const CashBook = () => {
             Shortcuts
           </button>
           <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex border px-6 h-[40px] bg-transparent border-gray-100 shadow-xs hover:border-blue-900 text-blue-900">
-               <FaUsers className='sidebar_item_icon' /> 
+              <FaUsers className='sidebar_item_icon' />
             Business Team
           </button>
         </div>
