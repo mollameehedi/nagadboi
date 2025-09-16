@@ -8,6 +8,8 @@ import { PiPlusCircleDuotone } from 'react-icons/pi';
 import { FiPlusCircle } from 'react-icons/fi';
 import AddContactModal from './CashEntry/AddContactModal';
 import AddNewCategory from './CashEntry/AddNewCategory';
+import Dropdown from '@/components/Common/CashEntry/Dropdown';
+import AddPaymentMode from './CashEntry/AddPaymentMode';
 
 const CashEntryModal = ({ isOpen, onClose }) => {
   const [entryType, setEntryType] = useState('cashIn');
@@ -33,9 +35,21 @@ const CashEntryModal = ({ isOpen, onClose }) => {
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
 
+
+
+
+    // State for Payment Mode
+    const [paymentModes, setPaymentModes] = useState([
+        { id: 1, name: 'Cash' },
+        { id: 2, name: 'Online' },
+        { id: 3, name: 'Credit Card' },
+        { id: 4, name: 'Debit Card' },
+    ]);
+    const [paymentModeSearch, setPaymentModeSearch] = useState('');
+    const [showPaymentModesDropdown, setShowPaymentModesDropdown] = useState(false);
+    const [showAddPaymentModeModal, setShowAddPaymentModeModal] = useState(false);
+
   if (!isOpen) return null;
-
-
 
   const handleContactSelect = (contact) => {
     setSelectedContact(contact);
@@ -69,6 +83,26 @@ const CashEntryModal = ({ isOpen, onClose }) => {
     setCategorySearch(category.name);
     setShowCategoriesDropdown(false);
   };
+
+
+     // Payment Mode Handlers
+    const filteredPaymentModes = paymentModes.filter(mode =>
+        mode.name.toLowerCase().includes(paymentModeSearch.toLowerCase())
+    );
+    const handlePaymentModeSelect = (mode) => {
+        setPaymentModeSearch(mode.name);
+        setShowPaymentModesDropdown(false);
+    };
+
+    const handleAddNewItem = (list, setList, newItemName) => {
+        const newItem = {
+            id: list.length + 1,
+            name: newItemName
+        };
+        setList([...list, newItem]);
+    };
+
+
 
 
 
@@ -204,53 +238,32 @@ const CashEntryModal = ({ isOpen, onClose }) => {
 
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-gray-700 text-sm font-medium mb-1">Category</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Search or Select"
-                      value={categorySearch}
-                      onChange={(e) => {
-                        setCategorySearch(e.target.value);
-                        setShowCategoriesDropdown(true);
-                      }}
-                      onFocus={() => setShowCategoriesDropdown(true)}
-                      onBlur={() => setTimeout(() => setShowCategoriesDropdown(false), 200)}
-                    />
-                    {showCategoriesDropdown && (
-                      <div className="absolute z-10 p-3 w-full mt-1 bg-white border border-gray-200 rounded-sm shadow-lg">
-                        <div className='overflow-y-auto  max-h-48'>
-                          {filteredCategories.length > 0 ? (
-                            filteredCategories.map(category => (
-                              <div
-                                key={category.id}
-                                className="px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-100"
-                                onMouseDown={() => handleCategorySelect(category)}
-                              >
-                                {category.name}
-                              </div>
-                            ))
-                          ) : (
-                            <div className="px-4 py-2 text-gray-500">No categories found.</div>
-                          )}
-                        </div>
-                        <button
-                          className="flex items-center font-medium w-full px-4 py-2  max-h-12 h-12 text-sm text-blue-600 hover:bg-gray-100 mt-2"
-                          onMouseDown={() => setShowAddCategoryModal(true)}
-                        >
-                          <FiPlusCircle className="text-blue-600" /> Add New Category
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                   <Dropdown
+                                    label="Category Name"
+                                    placeholder="Search or Select"
+                                    searchTerm={categorySearch}
+                                    setSearchTerm={setCategorySearch}
+                                    showDropdown={showCategoriesDropdown}
+                                    setShowDropdown={setShowCategoriesDropdown}
+                                    filteredItems={filteredCategories}
+                                    handleSelect={handleCategorySelect}
+                                    addNewLabel="Add New Category"
+                                    onAddNew={() => setShowAddCategoryModal(true)}
+                                />
                 </div>
                 <div>
-                  <label className="block text-gray-700 text-sm font-medium mb-1">Payment Mode</label>
-                  <select className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option>Cash</option>
-                    <option>Online</option>
-                  </select>
+                   <Dropdown
+                                    label="Payment Mode"
+                                    placeholder="Search or Select"
+                                    searchTerm={paymentModeSearch}
+                                    setSearchTerm={setPaymentModeSearch}
+                                    showDropdown={showPaymentModesDropdown}
+                                    setShowDropdown={setShowPaymentModesDropdown}
+                                    filteredItems={filteredPaymentModes}
+                                    handleSelect={handlePaymentModeSelect}
+                                    addNewLabel="Add New Mode"
+                                    onAddNew={() => setShowAddPaymentModeModal(true)}
+                                />
                 </div>
               </div>
 
@@ -273,6 +286,7 @@ const CashEntryModal = ({ isOpen, onClose }) => {
       </div>
       <AddContactModal isOpen={showAddContactModal} onClose={() => setShowAddContactModal(false)} />
       <AddNewCategory isOpen={showAddCategoryModal} onClose={() => setShowAddCategoryModal(false)} />
+      <AddPaymentMode isOpen={showAddPaymentModeModal} onClose={() => setShowAddPaymentModeModal(false)} />
     </>
   );
 };
