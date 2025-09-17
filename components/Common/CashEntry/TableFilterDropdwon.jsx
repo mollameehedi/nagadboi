@@ -31,7 +31,7 @@ const TableFilterDropdwon = ({ buttonContent, dropdownContent, disabled = false 
         <IoMdArrowDropdown className="w-4 h-4" />
       </button>
       {isOpen && (
-        <div className="absolute z-10 top-full mt-2 w-56 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="absolute z-10 top-full mt-2 w-56 bg-white rounded-lg shadow-sm border-gray-200  focus:outline-none">
           {dropdownContent({ setIsOpen })}
         </div>
       )}

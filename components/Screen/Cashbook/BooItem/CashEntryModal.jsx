@@ -6,10 +6,10 @@ import { IoChevronDownCircleOutline } from 'react-icons/io5';
 import { MdAttachFile } from 'react-icons/md';
 import { PiPlusCircleDuotone } from 'react-icons/pi';
 import { FiPlusCircle } from 'react-icons/fi';
-import AddContactModal from './CashEntry/AddContactModal';
-import AddNewCategory from './CashEntry/AddNewCategory';
+import AddContactModal from '../Contact/AddContactModal';
+import AddNewCategory from '../Category/AddNewCategory';
 import Dropdown from '@/components/Common/CashEntry/Dropdown';
-import AddPaymentMode from './CashEntry/AddPaymentMode';
+import AddPaymentMode from '../PaymentMode/AddPaymentMode';
 
 const CashEntryModal = ({ isOpen, onClose }) => {
   const [entryType, setEntryType] = useState('cashIn');

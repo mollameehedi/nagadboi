@@ -8,9 +8,8 @@ import { FiChevronDown, FiChevronsDown, FiEdit, FiTrash } from 'react-icons/fi';
 import { GoArrowSwitch } from 'react-icons/go';
 import { HiArrowTurnUpRight, HiOutlineUsers } from 'react-icons/hi2';
 import { MdContentCopy, MdOutlineCategory, MdOutlinePayments, MdRemoveCircleOutline } from 'react-icons/md';
-import { PiPencilCircleDuotone } from 'react-icons/pi';
-import { TbPencilDiscount } from 'react-icons/tb';
 import EntryDetails from './BooItem/CashEntry/EntryDetails';
+import EntryDatachange from './CashEntry/EntryDataChange';
 
 
 const initialTransactions = [
@@ -24,8 +23,9 @@ const initialTransactions = [
 const TransactionTable = () => {
   const [transactions, setTransactions] = useState(initialTransactions);
   const [selected, setSelected] = useState(new Set());
-
+const [currentAction, setCurrentAction] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isChangeModalOpen, setIsChangeModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
 
@@ -77,6 +77,59 @@ const TransactionTable = () => {
   const handleCopyOppositeEntries = () => {
     console.log('Copying opposite entries for selected:', Array.from(selected));
     setShowMoveCopyDropdown(false);
+  };
+
+ 
+
+  // change entry
+
+
+   const contacts = [
+    { id: 1, name: "Ten", phone: "+911774378409", type: "Customer" },
+    { id: 2, name: "Maria", phone: "+1234567890", type: "Supplier" },
+    { id: 3, name: "David", phone: "+0987654321", type: "Customer" },
+  ];
+   const categories = [
+    { id: 1, name: "Sale",},
+    { id: 2, name: "Food",},
+    { id: 3, name: "Purchase",},
+  ];
+   const paymentMethods = [
+    { id: 1, name: "Cash",},
+    { id: 2, name: "Online",},
+    { id: 3, name: "Bank",},
+  ];
+
+
+ const handleChangeUpdate = (type) => {
+ setCurrentAction(type);    
+    setIsChangeModalOpen(true);
+  
+  }
+
+   const getModalProps = () => {
+    switch (currentAction) {
+      case 'category':
+        return {
+          title: "Choose Categoryy",
+          description: "Categories in this book",
+          data: contacts,
+        };
+      case 'payment':
+        return {
+          title: "Choose Payment Mode",
+          description: "Payment Modes in this book",
+          data: categories,
+        };
+      case 'contact':
+        return {
+          title: "Choose Contact",
+          description: "Contacts in this book",
+          data: paymentMethods,
+        };
+      default:
+        return {};
+    }
   };
 
   // transaction row  click handle
@@ -167,19 +220,19 @@ const TransactionTable = () => {
             dropdownContent={({ setIsOpen }) => (
               <div className="py-1">
                 <button
-                  onClick={() => handleMoveEntries(setIsOpen)}
-                  className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => handleChangeUpdate('category')}
+                  className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 border-gray-200 hover:bg-gray-100"
                 >
                   <MdOutlineCategory /> Change Category
                 </button>
                 <button
-                  onClick={() => handleCopyEntries(setIsOpen)}
+                  onClick={() => handleChangeUpdate('payment')}
                   className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   <MdOutlinePayments /> Change Payment Mode
                 </button>
                 <button
-                  onClick={() => handleCopyOppositeEntries(setIsOpen)}
+                  onClick={() => handleChangeUpdate('payment')}
                   className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   <HiOutlineUsers className="transform -scale-x-100" /> Change Contact
@@ -187,6 +240,14 @@ const TransactionTable = () => {
               </div>
             )}
           />
+
+            {isChangeModalOpen && (
+        <EntryDatachange
+          isOpen={isChangeModalOpen}
+          onClose={() => setIsChangeModalOpen(false)}
+           {...getModalProps()}
+        />
+      )}
         </div>
 
         <table className="min-w-full divide-y divide-gray-100">
