@@ -3,7 +3,7 @@ import React from 'react';
 import Banner from '@/components/auth/Banner';
 import RegistrationForm from '@/components/auth/RegistrationForm';
 
-const registration = () => {
+const register = () => {
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="bg-white min-h-screen shadow-xl rounded-lg overflow-hidden grid grid-cols-1 md:grid-cols-3">
@@ -16,4 +16,4 @@ const registration = () => {
     );
 };
 
-export default registration;
+export default register;

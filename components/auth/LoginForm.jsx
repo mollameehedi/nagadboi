@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import logo from '../../public/logo.png';
-import { FcGoogle } from 'react-icons/fc';
-import { MdOutlineMailOutline } from 'react-icons/md';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import PhoneNumberInput from '../Common/PhoneNumberInput';
@@ -85,7 +83,7 @@ const LoginForm = () => {
                             <div className="relative flex justify-center text-sm">
                                 <span className="bg-white px-2 text-gray-500 font-semibold">OR</span>
                             </div>
-                            <Link href="/registration" className="auth_button">
+                            <Link href="/register" className="auth_button">
                                 <span className="ml-3">Other Ways To Login</span>
                             </Link>
 
