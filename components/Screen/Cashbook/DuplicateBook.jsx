@@ -48,6 +48,7 @@ const DuplicateBook = ({isOpen,onClose}) => {
               label="Enter new book name"
               isRequired={true}
             />
+            
           </div>
           <div className='py-4 px-8'>
             <h4 className="font-normal text-gray-900 text-sm mb-5">Step 2: Choose settings to duplicate</h4>

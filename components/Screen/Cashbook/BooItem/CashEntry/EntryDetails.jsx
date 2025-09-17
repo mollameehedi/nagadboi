@@ -1,15 +1,17 @@
 import Card from '@/components/Common/Card';
 import RightModal from '@/components/Common/RightModal/RightModal'
 import RightModalHeader from '@/components/Common/RightModal/RightModalHeader'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaPlus } from 'react-icons/fa';
 import { FiPlus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
 import { IoIosArrowDown } from 'react-icons/io';
 import { LiaEdit } from 'react-icons/lia';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import MoreAction from './MoreAction';
 
 const EntryDetails = ({ isOpen, onClose, data }) => {
+    const [showMoreActionsModal, setShowMoreActionsModal] = useState(false);
 
     const entryData = {
         type: 'Cash In',
@@ -28,6 +30,7 @@ const EntryDetails = ({ isOpen, onClose, data }) => {
 
     return (
 
+       <>
         <RightModal isOpen={isOpen} onClose={onClose}>
             <div>
 
@@ -101,11 +104,15 @@ const EntryDetails = ({ isOpen, onClose, data }) => {
 
 
             <div className="p-4 border-t border-gray-200 flex justify-end space-x-3">
-                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-gray-200 cursor-pointer"><RiDeleteBin6Line/> Delete</button>
-                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer">More Action <IoIosArrowDown/> </button>
-                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer"> <LiaEdit/> Edit </button>
+                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-normal gap-2 items-center justify-center inline-flex min-w-[120px] px-6 h-[48px] text-red-600cursor-pointer text-red-700"><RiDeleteBin6Line/> Delete</button>
+                <button onClick={() => setShowMoreActionsModal(true)} className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-primary cursor-pointer">More Action <IoIosArrowDown/> </button>
+                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white bg-primary border-primary cursor-pointer"> <LiaEdit/> Edit </button>
             </div>
+            
         </RightModal>
+        <MoreAction isOpen={showMoreActionsModal} onClose={() => setShowMoreActionsModal(false)}/>
+       </>
+
     )
 }
 

@@ -6,9 +6,6 @@ import LoginForm from '@/components/auth/LoginForm';
 
 
 const Login = () => {
-    const [mobileNumber, setMobileNumber] = useState('');
-
-
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="bg-white min-h-screen shadow-xl rounded-lg overflow-hidden grid grid-cols-1 md:grid-cols-3">
