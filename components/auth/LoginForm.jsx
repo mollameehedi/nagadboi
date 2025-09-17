@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import PhoneNumberInput from '../Common/PhoneNumberInput';
 
 const LoginForm = () => {
 
@@ -64,50 +65,14 @@ const LoginForm = () => {
                     <h1 className="text-3xl font-bold text-gray-900 mb-10 text-center">
                         Log In
                     </h1>
-                    <div className="w-full max-w-md flex flex-col items-center border p-8 rounded-lg">
-
+                    <div className="w-full max-w-md flex flex-col items-center border border-gray-200 p-8 rounded-lg">
                         <div className="space-y-4">
-                            <p className="text-gray-900  text-base  mb-4 font-semobold">Enter your mobile Number</p>
-
-                           
-          <div className="flex w-full mb-4 mt-1 space-x-2 relative country-dropdown">
-            {/* Custom Country Code Dropdown */}
-            <div
-              className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-            >
-              <img src={selectedCountry.flagUrl} alt={`${selectedCountry.name} flag`} className="w-6 h-4 mr-2" />
-            </div>
-
-            {/* Dropdown Menu */}
-            {isCountryDropdownOpen && (
-              <ul className="absolute z-10 top-full mt-1 left-0 w-48 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                {countries.map((country) => (
-                  <li
-                    key={country.code}
-                    className="flex items-center p-3 hover:bg-gray-600 cursor-pointer transition-colors duration-150"
-                    onClick={() => {
-                      setSelectedCountry(country);
-                      setIsCountryDropdownOpen(false);
-                    }}
-                  >
-                    <img src={country.flagUrl} alt={`${country.name} flag`} className="w-6 h-4 mr-2" />
-                    <span>{country.name} ({country.code})</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {/* Mobile Number Input */}
-            <input
-              type="tel"
-              name="number"
-              placeholder="Mobile number"
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
-              className="flex-1 py-2 px-4 rounded-lg border  leading-[24px] text-gray-600 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
+                           <PhoneNumberInput
+                              label="Enter your mobile Number"
+                              value={mobileNumber}
+                              onChange={setMobileNumber}
+                              placeholder="Mobile number"
+                            />
 
           <button
             onClick={handleSendOtp}

@@ -51,19 +51,10 @@ const AddContactModal = ({ isOpen, onClose }) => {
         </div>
 
         <div className="space-y-4 px-6">
-          {/* <div>
-            <label className="block text-gray-700 text-sm font-medium mb-1">Contact Name <span className="text-red-500">*</span></label>
-            <input 
-              type="text"
-              className="w-full px-4 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              placeholder="e.g. Rajesh, Vivek, Saif, John" 
-            />
-          </div> */}
-
            <FormInput
               type="text" 
               className="w-[100%] px-4 mt-2 py-2" 
-              // value={newBookName} 
+              // value={newBookName}
               // onChange={(e) => setNewBookName(e.target.value)} 
               placeholder="Contact Name"
               label="Enter new contact name"
@@ -72,7 +63,7 @@ const AddContactModal = ({ isOpen, onClose }) => {
 
 
         <PhoneNumberInput
-            label="Mobile Number"
+            label="Mobi le Number"
             value={mobileNumber}
             onChange={setMobileNumber}
             placeholder="e.g. 8772321230"

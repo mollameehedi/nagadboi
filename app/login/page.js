@@ -1,11 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Banner from '@/components/auth/Banner';
 import LoginForm from '@/components/auth/LoginForm';
 
 
+
 const Login = () => {
-    // Slider settings
+    const [mobileNumber, setMobileNumber] = useState('');
 
 
     return (

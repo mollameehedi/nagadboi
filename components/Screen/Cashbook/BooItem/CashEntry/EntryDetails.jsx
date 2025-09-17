@@ -5,6 +5,9 @@ import React from 'react'
 import { FaPlus } from 'react-icons/fa';
 import { FiPlus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
+import { IoIosArrowDown } from 'react-icons/io';
+import { LiaEdit } from 'react-icons/lia';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const EntryDetails = ({ isOpen, onClose, data }) => {
 
@@ -78,13 +81,13 @@ const EntryDetails = ({ isOpen, onClose, data }) => {
                             ))}
                         </div>
                     </div>
-                   </Card>
+                </Card>
 
                     {/* Activities Section */}
                     <div className="space-y-3">
                         <h3 className="text-sm font-semibold text-gray-700 mt-3">Activites</h3>
                         <div className="flex border-l-2  pl-6 relative items-center space-x-3 border-b-1 border-gray-200 p-4">
-                            <div className="h-7 w-7  text-gray-600 absolute p-2 -left-3 top-2 flex items-center justify-center rounded-full bg-gray-200">
+                            <div className="h-6 w-6  text-gray-600 absolute p-1 -left-[13px] top-5 flex items-center justify-center rounded-full bg-gray-200">
                                 <GoPlus className='text-xl'/>
                             </div>
                             <div>
@@ -98,9 +101,9 @@ const EntryDetails = ({ isOpen, onClose, data }) => {
 
 
             <div className="p-4 border-t border-gray-200 flex justify-end space-x-3">
-                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-gray-200 cursor-pointer">Delete</button>
-
-                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer">Save</button>
+                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-primary border-gray-200 cursor-pointer"><RiDeleteBin6Line/> Delete</button>
+                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer">More Action <IoIosArrowDown/> </button>
+                <button className="rounded text-center focus:ring-4 focus:outline-none focus:ring-opacity-50 disabled:opacity-80 disabled:cursor-not-allowed font-semibold gap-2 items-center justify-center inline-flex min-w-[120px] border px-6 h-[48px] text-white border-primary bg-primary cursor-pointer"> <LiaEdit/> Edit </button>
             </div>
         </RightModal>
     )
