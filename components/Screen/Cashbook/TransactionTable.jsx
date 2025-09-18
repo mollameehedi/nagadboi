@@ -114,18 +114,21 @@ const [currentAction, setCurrentAction] = useState(null);
           title: "Choose Categoryy",
           description: "Categories in this book",
           data: contacts,
+          type:'category'
         };
       case 'payment':
         return {
           title: "Choose Payment Mode",
           description: "Payment Modes in this book",
           data: categories,
+          type:'payment'
         };
       case 'contact':
         return {
           title: "Choose Contact",
           description: "Contacts in this book",
           data: paymentMethods,
+          type:'contact'
         };
       default:
         return {};
